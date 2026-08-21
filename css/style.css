@@ -1,0 +1,243 @@
+@charset "utf-8";
+
+/* ==========================================
+リセットCSS
+========================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    background-color: #f4f0eb;
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 500;
+    color: #333333;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul,
+ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================
+ヘッダー
+========================================== */
+#header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    /* 画像より前面に表示 */
+
+    /* レイアウト調整用（ロゴとナビを両端に配置） */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    /* 余白はお好みで調整 */
+    box-sizing: border-box;
+}
+
+/* ==========================================
+ファーストビュー全体設定
+========================================== */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ==========================================
+スライドコンテナ＆画像設定
+========================================== */
+.slider-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* 画像パス指定 */
+.src1 {
+    background-image: url(../img/FVimage1.jpg);
+}
+
+.src2 {
+    background-image: url(../img/FVimage2.jpg);
+}
+
+.src3 {
+    background-image: url(../img/FVimage3.jpg);
+}
+
+/* ==========================================
+アニメーション制御（分離構造） 
+ ========================================== */
+/* 1. 初回演出（最前面レイヤー：1周目・1枚目専用） - z-index: 2 で手前に配置 - 無限ループ（infinite）ではなく「1」回のみ実行 */
+.image.slide-once {
+    z-index: 2;
+    animation: first-slide-animation 15s 1 forwards;
+    animation-delay: 3s;
+}
+
+.fade-loop:nth-of-type(2) {
+    animation: image-switch-animation 15s infinite;
+    animation-delay: 18s;
+}
+
+/* 2枚目：5秒後からスタート */
+.fade-loop:nth-of-type(3) {
+    animation: image-switch-animation 15s infinite;
+    animation-delay: 8s;
+}
+
+/* 3枚目：10秒後からスタート */
+.fade-loop:nth-of-type(4) {
+    animation: image-switch-animation 15s infinite;
+    animation-delay: 13s;
+}
+
+/* ==========================================
+Keyframes（アニメーション定義） 
+========================================== */
+/* 初回1回目専用：右からスライドイン */
+@keyframes first-slide-animation {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    8.33% {
+        /* スライドイン完了 */
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    33.33% {
+        /* 表示維持 */
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    41.66% {
+        /* フェードアウト完了（以降は下層のループにバトンタッチ） */
+        opacity: 0;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+}
+
+/* 2周目以降・2枚目/3枚目：通常のフェードループ */
+@keyframes image-switch-animation {
+    0% {
+        opacity: 0;
+    }
+
+    8.33% {
+        opacity: 1;
+    }
+
+    33.33% {
+        opacity: 1;
+    }
+
+    41.66% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+中央固定の日本語3列テキスト
+========================================== */
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 3;
+
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+}
+
+.text-column {
+    font-size: 16px;
+
+    writing-mode: vertical-rl;
+    letter-spacing: 0.1em;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: text-slide-up 1s ease-out forwards;
+}
+
+.text-column:nth-child(1) {
+    animation-delay: 0.6s;
+}
+
+.text-column:nth-child(2) {
+    animation-delay: 0.8s;
+}
+
+.text-column:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes text-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.text-column {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

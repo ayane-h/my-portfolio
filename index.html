@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayane Harada Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header id="header">
+        <p id="home">
+            <a href="index.html">
+                <img src="img/APP DEVELOPER.svg" alt="サイトロゴ" width="200" height="50">
+            </a>
+        </p>
+
+        <nav>
+            <ul class="nav-list">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#projects-page">制作物</a></li>
+                <li><a href="#aboutme-page">わたしについて</a></li>
+            </ul>
+        </nav>
+
+        <button class="burger-btn" aria-label="メニューを開く">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <main>
+        <!-- ファーストビュー -->
+        <section class="hero-section">
+            <div class="slider-container">
+                <!-- 初回演出用レイヤー（最前面で1回だけスライドインしてフェードアウト） -->
+                <div class="image src1 slide-once"></div>
+
+                <!-- ループ用レイヤー（最初から15秒周期でフェードループ） -->
+                <div class="image src1 fade-loop"></div>
+                <div class="image src2 fade-loop"></div>
+                <div class="image src3 fade-loop"></div>
+            </div>
+
+            <div class="hero-text">
+                <div class="text-column">考えることを</div>
+                <div class="text-column">楽しみながら</div>
+                <div class="text-column">つくっていく</div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
