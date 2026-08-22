@@ -1,25 +1,133 @@
 @charset "utf-8";
 
-@media (max-width: 768px) {
-    nav {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 100%;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.9);
-        transition: right 0.3s ease;
-        z-index: 200;
+@media screen and (max-width: 1024px) {
+    #header {
+        padding: 16px 24px;
     }
 
-    nav.is-active {
-        right: 0;
-        /* 画面内に引き出す */
+    #home img {
+        width: 160px;
+        height: auto;
+    }
+
+    nav {
+        margin-right: 80px;
     }
 
     .nav-list {
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
+        gap: 18px;
+    }
+
+    ul a {
+        font-size: 13px;
+    }
+}
+
+/* ==========================================
+SP（〜768px）
+横並びのナビリストを非表示にし、
+ハンバーガーメニューのみに切り替え
+========================================== */
+@media screen and (max-width: 768px) {
+
+    .src2 {
+        background-position: 43% center;
+    }
+
+    /* 横並びリストは非表示。ハンバーガーメニューのみ使用 */
+    nav {
+        margin-right: 0;
+    }
+
+    .nav-list {
+        display: none;
+    }
+
+    #header {
+        padding: 16px 20px;
+    }
+
+    #home img {
+        width: 140px;
+        height: auto;
+    }
+
+    /* ハンバーガーボタン：PC版と同じ右上表示のまま、位置だけ調整 */
+    .burger-btn {
+        right: 25px;
+    }
+
+    /* 展開パネル：PC版と同じ「右上に箱が出る」形を維持しつつ画面幅に収める */
+    .menu-panel {
+        top: 16px;
+        right: 16px;
+        width: 220px;
+        min-height: 220px;
+        padding: 70px 32px 32px;
+    }
+
+    .menu-panel-nav a {
+        font-size: 14px;
+    }
+
+    /* ファーストビューの中央テキスト */
+    .hero-text {
+        gap: 0.75rem;
+    }
+
+    .text-column {
+        font-size: 14px;
+    }
+}
+
+/* ==========================================
+小型SP（〜480px）
+========================================== */
+@media screen and (max-width: 480px) {
+    #header {
+        padding: 14px 16px;
+    }
+
+    #home img {
+        width: 120px;
+        height: auto;
+    }
+
+    .burger-btn {
+        right: 25px;
+        width: 24px;
+        height: 18px;
+    }
+
+    .burger-btn span:nth-child(2) {
+        top: 8px;
+    }
+
+    .burger-btn span:nth-child(3) {
+        top: 16px;
+    }
+
+    .burger-btn.is-active span:nth-child(1),
+    .burger-btn.is-active span:nth-child(3) {
+        top: 8px;
+    }
+
+    /* 展開パネル：画面幅からはみ出さないよう幅を可変に */
+    .menu-panel {
+        top: 12px;
+        right: 12px;
+        width: calc(100vw - 24px);
+        max-width: 200px;
+        min-height: 200px;
+        padding: 64px 28px 28px;
+    }
+
+    .hero-text {
+        gap: 0.5rem;
+    }
+
+    .text-column {
+        font-size: 13px;
+        letter-spacing: 0.08em;
     }
 }

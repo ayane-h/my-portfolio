@@ -59,7 +59,7 @@ ol {
 
 nav {
     margin-left: auto;
-    margin-right: 60px;
+    margin-right: 90px;
     /* ロゴがある場合、メニューを自動で右端に寄せます */
 }
 
@@ -154,25 +154,20 @@ ul a {
     position: fixed;
     top: 20px;
     right: 20px;
-
-    width: 280px;
+    width: 250px;
     min-height: 260px;
-
     padding: 80px 40px 40px;
-
     background-color: #E8E1D8;
-
+    border-radius: 12px;
     z-index: 100;
-
     opacity: 0;
     visibility: hidden;
     transform: translateY(-15px) scale(0.96);
     transform-origin: top right;
-
     transition:
-        opacity 0.35s ease,
-        transform 0.35s ease,
-        visibility 0.35s ease;
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        visibility 0.5s ease;
 }
 
 .menu-panel.is-open {
@@ -184,21 +179,23 @@ ul a {
 .menu-panel-nav ul {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
 }
 
 .menu-panel-nav a {
     display: block;
-
     color: #333333;
     font-size: 15px;
     font-weight: 400;
-
     transition: opacity 0.2s ease;
 }
 
 .menu-panel-nav a:hover {
     opacity: 0.5;
+}
+
+.burger-btn.is-active span {
+    background-color: #333333;
 }
 
 
