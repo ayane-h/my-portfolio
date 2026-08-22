@@ -57,6 +57,148 @@ ol {
     box-sizing: border-box;
 }
 
+nav {
+    margin-left: auto;
+    margin-right: 90px;
+    /* ロゴがある場合、メニューを自動で右端に寄せます */
+}
+
+/* メニューの文字を横並びにする */
+.nav-list {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    transition:
+        opacity 0.45s ease,
+        transform 0.45s ease;
+    transform-origin: right center;
+}
+
+/* スクロール時：ナビだけ小さくして消す */
+#header.is-scrolled .nav-list {
+    opacity: 0;
+    transform: scale(0.85);
+    pointer-events: none;
+}
+
+ul a {
+    color: #FFFFFF;
+    font-size: 14px;
+    white-space: nowrap;
+    font-weight: 300;
+    /* 画面が狭くなっても文字が途中で改行されないようにする */
+}
+
+.burger-btn {
+    position: absolute;
+    top: 50%;
+    right: 4%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 210;
+}
+
+.burger-btn span {
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 1px;
+    background-color: #FFFFFF;
+    transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+}
+
+.burger-btn span:nth-child(1) {
+    top: 0;
+    width: 100%; /* 1番上：一番長い (28px) */
+}
+
+.burger-btn span:nth-child(2) {
+    top: 9px;
+    width: 70%; /* 真ん中：中くらい (約20px) */
+}
+
+.burger-btn span:nth-child(3) {
+    top: 18px;
+    width: 45%; /* 1番下：一番短い (約13px) */
+}
+
+.burger-btn.is-active span:nth-child(1) {
+    top: 9px;
+    width: 100%;
+    transform: rotate(45deg);
+}
+
+.burger-btn.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-btn.is-active span:nth-child(3) {
+    top: 9px;
+    width: 100%;
+    transform: rotate(-45deg);
+}
+
+/* ==========================================
+ハンバーガーメニュー展開パネル
+========================================== */
+
+.menu-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 250px;
+    min-height: 260px;
+    padding: 80px 40px 40px;
+    background-color: #E8E1D8;
+    border-radius: 12px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-15px) scale(0.96);
+    transform-origin: top right;
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        visibility 0.5s ease;
+}
+
+.menu-panel.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.menu-panel-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.menu-panel-nav a {
+    display: block;
+    color: #333333;
+    font-size: 15px;
+    font-weight: 400;
+    transition: opacity 0.2s ease;
+}
+
+.menu-panel-nav a:hover {
+    opacity: 0.5;
+}
+
+.burger-btn.is-active span {
+    background-color: #333333;
+}
+
+
 /* ==========================================
 ファーストビュー全体設定
 ========================================== */
