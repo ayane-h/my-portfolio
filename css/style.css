@@ -117,17 +117,20 @@ ul a {
 
 .burger-btn span:nth-child(1) {
     top: 0;
-    width: 100%; /* 1番上：一番長い (28px) */
+    width: 100%;
+    /* 1番上：一番長い (28px) */
 }
 
 .burger-btn span:nth-child(2) {
     top: 9px;
-    width: 70%; /* 真ん中：中くらい (約20px) */
+    width: 70%;
+    /* 真ん中：中くらい (約20px) */
 }
 
 .burger-btn span:nth-child(3) {
     top: 18px;
-    width: 45%; /* 1番下：一番短い (約13px) */
+    width: 45%;
+    /* 1番下：一番短い (約13px) */
 }
 
 .burger-btn.is-active span:nth-child(1) {
@@ -382,4 +385,51 @@ Keyframes（アニメーション定義）
 .text-column {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================
+制作物
+========================================== */
+h2 {
+    display: flex;
+    flex-direction: column;
+    /* 上下に並べる */
+    gap: 4px;
+    /* 隙間の調整 */
+    font-weight: normal;
+}
+
+/* 英語サブタイトル */
+h2 .en {
+    font-size: 0.9rem;
+    color: #4a5568;
+    /* 文字色 */
+    display: flex;
+    align-items: center;
+    /* 丸と文字の高さを揃える */
+    gap: 6px;
+    /* 丸と文字の間隔 */
+}
+
+/* 左側の黒丸 */
+h2 .en::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    /* 丸の幅 */
+    height: 10px;
+    /* 丸の高さ */
+    background-color: #4a5568;
+    /* 丸の色 */
+    border-radius: 50%;
+    /* 完全な丸にする */
+    transform: translateY(1px);
+    margin-left: 2%;
+}
+
+/* 日本語メインタイトル */
+h2 .ja {
+    font-size: 1.8rem;
+    color: #1a202c;
+    line-height: 1.2;
 }
