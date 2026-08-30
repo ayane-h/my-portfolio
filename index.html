@@ -67,70 +67,101 @@
                 <div class="text-column">つくっていく</div>
             </div>
         </section>
+
+        <!-- 制作物 -->
+        <section id="projects-page" class="projects-section">
+
+            <h2>
+                <span class="en">projects</span>
+                <span class="ja">制作物</span>
+            </h2>
+
+            <!-- 制作物リスト -->
+            <div class="projects-list">
+
+                <!-- 作品01：画像（PC+スマホ）→ テキストの順 -->
+                <article class="project-item project-item--featured project-item--01">
+                    <a href="#" class="project-media">
+                        <img src="img/日記アプリSS.png" alt="日記アプリPC版画面" class="project-media__pc">
+                        <img src="img/日記アプリスマホSS.png" alt="日記アプリスマホ版画面" class="project-media__sp">
+                    </a>
+
+                    <div class="project-info">
+                        <h3 class="project-info__title">01 — DIARY APP</h3>
+                        <p class="project-info__text">書いた気持ちを、 別の視点から見つめ直す。</p>
+                        <p class="project-info__text">AIによる言いかえ機能を備えた Web日記アプリ。</p>
+
+                        <div class="project-meta">
+                            <span class="project-meta__date">2026.07 — NOW</span>
+                            <span class="project-meta__tech">JavaScript / Gemini API / Cloudflare</span>
+                        </div>
+                        <a class="project-button" href="#">VIEW PROJECT</a>
+                    </div>
+                </article>
+
+                <!-- 作品02：テキスト → 画像の順（DOM順を入れ替えるだけで左右反転） -->
+                <article class="project-item project-item--featured project-item--02">
+                    <div class="project-info">
+                        <h3 class="project-info__title">02 — ・・・</h3>
+                        <p class="project-info__text">・・・</p>
+                        <p class="project-info__text">・・・・</p>
+
+                        <div class="project-meta">
+                            <span class="project-meta__date">2026.09 — NOW</span>
+                            <span class="project-meta__tech">・・・</span>
+                        </div>
+                        <a class="project-button" href="#">VIEW PROJECT</a>
+                    </div>
+
+                    <div class="project-media">
+                        <img src="img/projects2.png" alt="作品02画面" class="project-media__image">
+                    </div>
+                </article>
+
+                <!-- サブ作品（03以降）：画像 → テキストを縦に並べ、横3列に配置 -->
+                <div class="sub-projects">
+
+                    <!-- 03 -->
+                    <article class="project-item project-item--sub">
+                        <a href="#" class="project-media">
+                            <img src="img/projects3.png" alt="作品03画面" class="project-media__image">
+                        </a>
+                        <h3 class="project-info__title">03 — TAX OFFICE WEBSITE</h3>
+                        <div class="project-meta">
+                            <span class="project-meta__date">2026.06</span>
+                            <span class="project-meta__tech">HTML / CSS / JavaScript</span>
+                        </div>
+                    </article>
+
+                    <!-- 04 -->
+                    <article class="project-item project-item--sub">
+                        <a href="#" class="project-media">
+                            <img src="img/projects4.png" alt="作品04画面" class="project-media__image">
+                        </a>
+                        <h3 class="project-info__title">04 — PORTFOLIO WEBSITE</h3>
+                        <div class="project-meta">
+                            <span class="project-meta__date">2026.08 — NOW</span>
+                            <span class="project-meta__tech">HTML / CSS / JavaScript</span>
+                        </div>
+                    </article>
+
+                    <!-- 05 -->
+                    <article class="project-item project-item--sub">
+                        <a href="#" class="project-media">
+                            <img src="img/projects5.png" alt="作品05画面" class="project-media__image">
+                        </a>
+                        <h3 class="project-info__title">05 — COMING SOON</h3>
+                        <div class="project-meta">
+                            <!-- <span class="project-meta__date">2026.08 — NOW</span> -->
+                            <!-- <span class="project-meta__tech">HTML / CSS / JavaScript</span> -->
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <!-- 制作物 -->
-    <h2>
-        <span class="en">projects</span>
-        <span class="ja">制作物</span>
-    </h2>
-
-    <!-- 制作物リスト -->
-    <div class="projects-list">
-
-        <!-- 作品 01 -->
-        <article class="project-item">
-            <h3>01 — DIARY APP</h3>
-            <p>書いた気持ちを、 別の視点から見つめ直す。</p>
-            <p>AIによる言いかえ機能を備えた Web日記アプリ。</p>
-
-            <div class="project-meta">
-                <span class="date">2026.07 — NOW</span>
-                <span class="tech">JavaScript / Gemini API / Cloudflare</span>
-            </div>
-            <a class="button" href="#">VIEW PROJECT</a>
-        </article>
-
-        <!-- 作品 02 -->
-        <article class="project-item">
-            <h3>02 — ・・・</h3>
-            <p>・・・</p>
-            <p>・・・・</p>
-
-            <div class="project-meta">
-                <span class="date">2026.09 — NOW</span>
-                <span class="tech">・・・</span>
-            </div>
-            <a class="button" href="#">VIEW PROJECT</a>
-        </article>
-
-        <!-- サブ作品（03以降） -->
-        <div class="sub-projects"></div>
-
-        <!-- 03 -->
-        <article class="project-item">
-            <h3>03 — TAX OFFICE WEBSITE</h3>
-            <div class="project-meta">
-                <span class="date">2026.06</span>
-                <span class="tech">HTML / CSS / JavaScript</span>
-            </div>
-        </article>
-
-        <!-- 04 -->
-        <article class="project-item">
-            <h3>04 — PORTFOLIO WEBSITE</h3>
-            <div class="project-meta">
-                <span class="date">2026.08 — NOW</span>
-                <span class="tech">HTML / CSS / JavaScript</span>
-            </div>
-        </article>
-
-        <!-- 05 -->
-        <article class="project-item">
-            <!-- 中身は01・02と完全に同じHTML構造！ -->
-        </article>
-
-        <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
