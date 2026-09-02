@@ -31,10 +31,10 @@ burgerBtn.addEventListener("click", () => {
 // ヘッダー：スクロール時にナビを縮小・非表示
 // ==========================================
 
-const header = document.getElementById("header");
+const heroSection = document.querySelector(".hero-section");
 
 window.addEventListener("scroll", () => {
-    if (window.scrollY > window.innerHeight * 0.7) {
+    if (window.scrollY >= heroSection.offsetHeight) {
         header.classList.add("is-scrolled");
     } else {
         header.classList.remove("is-scrolled");

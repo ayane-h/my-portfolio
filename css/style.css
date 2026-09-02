@@ -58,9 +58,10 @@ ol {
 }
 
 nav {
-    margin-left: auto;
-    margin-right: 90px;
-    /* ロゴがある場合、メニューを自動で右端に寄せます */
+    position: fixed;
+    top: 41px;
+    right: 120px;
+    z-index: 210;
 }
 
 /* メニューの文字を横並びにする */
@@ -72,17 +73,18 @@ nav {
     margin: 0;
     padding: 0;
 
-    transition:
-        opacity 0.45s ease,
-        transform 0.45s ease;
-    transform-origin: right center;
+    transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 /* スクロール時：ナビだけ小さくして消す */
 #header.is-scrolled .nav-list {
     opacity: 0;
-    transform: scale(0.85);
+    transform: translateX(40px);
     pointer-events: none;
+}
+
+#header.is-scrolled .burger-btn span {
+    background-color: #333333;
 }
 
 ul a {
@@ -94,10 +96,9 @@ ul a {
 }
 
 .burger-btn {
-    position: absolute;
-    top: 50%;
+    position: fixed;      /* absolute → fixed。ヘッダーから切り離して単独で画面に固定 */
+    top: 45px;            /* ヘッダー基準のtop:50%だったので、画面基準の数値に置き換え。見た目を見て微調整してください */
     right: 4%;
-    transform: translateY(-50%);
     width: 28px;
     height: 20px;
     background: none;
@@ -112,7 +113,8 @@ ul a {
     left: 0;
     height: 1px;
     background-color: #FFFFFF;
-    transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease,
+    top 0.3s ease background-color 0.3s ease;
 }
 
 .burger-btn span:nth-child(1) {
@@ -475,8 +477,7 @@ h2 .ja {
 /* 01：PC画像 + スマホ画像を重ねて配置 */
 .project-item--01 .project-media {
     position: relative;
-    width: 874px;
-    /* PC画像755px + スマホ画像がはみ出す分。実データに合わせて要調整 */
+    width: 830px;
 }
 
 .project-media__pc {
@@ -539,7 +540,7 @@ h2 .ja {
 .project-item--featured .project-info__text {
     margin: 8px 0 0 40px;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .project-item--featured .project-info__text:first-of-type {
