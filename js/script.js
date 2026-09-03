@@ -40,3 +40,34 @@ window.addEventListener("scroll", () => {
         header.classList.remove("is-scrolled");
     }
 });
+
+// ==========================================
+// 区切り画像上でハンバーガーメニューの色を変える
+// ==========================================
+
+const divider = document.querySelector(".section-divider");
+const burgerY = 55;
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY >= heroSection.offsetHeight) {
+        header.classList.add("is-scrolled");
+    } else {
+        header.classList.remove("is-scrolled");
+    }
+
+    // 区切り画像がハンバーガーボタンの位置にかぶっているかどうか
+    const dividerRect = divider.getBoundingClientRect();
+    const isOverDivider = dividerRect.top <= burgerY && dividerRect.bottom >= burgerY;
+    header.classList.toggle("is-over-divider", isOverDivider);
+});
+
+// ==========================================
+// トップページに戻るボタン
+// ==========================================
+
+const pageTop = document.querySelector(".page-top");
+
+pageTop.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
