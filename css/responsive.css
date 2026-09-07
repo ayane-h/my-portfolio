@@ -1,5 +1,32 @@
 @charset "utf-8";
 
+/* ==========================================
+共通（全画面幅）
+========================================== */
+
+/* ハンバーガーメニュー：ul a の white-space:nowrap を継承して
+   文字が箱からはみ出ていたのを修正 */
+.menu-panel-nav a {
+    white-space: normal;
+}
+
+.menu-panel {
+    width: 260px;
+}
+
+.section-divider {
+    height: 18vh;
+    min-height: 180px;
+    overflow: hidden;
+}
+
+.section-divider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
 @media screen and (max-width: 1024px) {
     #header {
         padding: 16px 24px;
@@ -10,16 +37,162 @@
         height: auto;
     }
 
+    /* ハンバーガーメニューとの余白が広すぎたため縮小 */
     nav {
-        margin-right: 80px;
+        margin-right: 8px;
+    }
+
+    .burger-btn {
+        right: 57px;
     }
 
     .nav-list {
         gap: 18px;
     }
 
+    /* 区切り画像：PCより少し縦幅を大きくする */
+    .section-divider {
+        height: 24vh;
+        min-height: 220px;
+    }
+
     ul a {
         font-size: 13px;
+    }
+
+    /* ==========================================
+    見出し共通：左上配置を明示
+    ========================================== */
+    h2 {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    /* ==========================================
+    制作物セクション
+    ========================================== */
+    .projects-section {
+        --projects-gutter: 40px;
+        padding-top: 40px;
+    }
+
+    .projects-list {
+        gap: 90px;
+        margin-top: 48px;
+    }
+
+    /* 01・02：画像を上、テキストを下に積む */
+    .project-item--featured {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+    }
+
+    .project-item--featured .project-info,
+    .project-item--02 .project-media {
+        flex: none;
+    }
+
+    .project-item--featured .project-info {
+        padding-left: 40px;
+    }
+
+    .project-item--01 .project-media,
+    .project-item--02 .project-media {
+        width: 100%;
+    }
+
+    .project-media__pc,
+    .project-item--02 .project-media__image {
+        width: 100%;
+    }
+
+    /* スマホ画像はPCと同じく右下に重ねる（位置はOKなのでサイズのみ縮小＝3分の2） */
+    .project-media__sp {
+        width: 25%;
+        right: 0;
+        bottom: -110px;
+    }
+
+    .project-item--01 .project-info {
+        margin-top: 100px;
+    }
+
+    /* 02はDOM順がテキスト→画像なので、画像を視覚的に先頭へ */
+    .project-item--02 .project-media {
+        order: -1;
+    }
+
+    .project-item--02 .project-info {
+        margin-top: 32px;
+        margin-left: 0;
+    }
+
+    .project-item--featured .project-info__text {
+        margin-left: 0;
+    }
+
+    .project-item--featured .project-info__text:first-of-type {
+        margin-top: 24px;
+    }
+
+    /* レスポンシブ表示にはホバー操作がないため、
+       ホバー時の動き・右の横線を無効化し、角を丸く */
+    .project-button {
+        border-radius: 30px;
+    }
+
+    .project-button::after {
+        display: none;
+    }
+
+    .project-button:hover {
+        background-color: transparent;
+        color: #333333;
+    }
+
+    /* 03〜05：グリッド化して折り返しやすくする（横並び3列を維持） */
+    .sub-projects {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        padding-left: 0;
+        margin-top: 60px;
+    }
+
+    .project-item--sub .project-info__title,
+    .project-item--sub .project-meta {
+        margin-left: 0;
+    }
+
+    .project-item--featured .project-meta {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+    }
+
+    .project-item--featured .project-meta__tech::before {
+        content: "／";
+        margin-right: 12px;
+        color: #53636A;
+    }
+
+    /* ==========================================
+    about セクション
+    ========================================== */
+    .about-layout {
+        margin-left: 0;
+        gap: 48px;
+    }
+
+    .about-media {
+        flex: 0 0 260px;
+    }
+
+    .about-content {
+        max-width: none;
     }
 }
 
@@ -61,9 +234,9 @@ SP（〜768px）
     .menu-panel {
         top: 16px;
         right: 16px;
-        width: 220px;
+        width: 240px;
         min-height: 220px;
-        padding: 70px 32px 32px;
+        padding: 70px 36px 32px 32px;
     }
 
     .menu-panel-nav a {
@@ -77,6 +250,118 @@ SP（〜768px）
 
     .text-column {
         font-size: 14px;
+    }
+
+    /* ==========================================
+    制作物セクション
+    ========================================== */
+    .projects-section {
+        --projects-gutter: 24px;
+        padding-top: 32px;
+    }
+
+    .projects-section h2 .ja,
+    .about-section h2 .ja {
+        font-size: 26px;
+    }
+
+    .projects-list {
+        gap: 72px;
+        margin-top: 40px;
+    }
+
+    .project-media__pc {
+        border-radius: 16px;
+    }
+
+    .project-media__sp {
+        width: 34%;
+        right: 0;
+        bottom: -80px;
+    }
+
+    .project-item--01 .project-info {
+        margin-top: 100px;
+    }
+
+    .project-info__title {
+        font-size: 19px;
+    }
+
+    .project-item--featured .project-info__text {
+        margin-top: 0;
+        font-size: 15px;
+    }
+
+    .project-item--featured .project-info__text:first-of-type {
+        margin-top: 16px;
+    }
+
+    .project-meta {
+        margin-top: 32px;
+    }
+
+    .project-button {
+        padding: 12px 32px;
+        margin-top: 24px;
+    }
+
+    .section-divider {
+        height: 38vh;
+        min-height: 260px;
+    }
+
+    /* 03〜05：タブレット幅は2列にして窮屈さを回避 */
+    .sub-projects {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 24px;
+        margin-top: 48px;
+    }
+
+    .project-item--sub .project-info__title {
+        font-size: 16px;
+        margin-top: 16px;
+    }
+
+    /* ==========================================
+    about セクション
+    ========================================== */
+    .about-section {
+        --about-gutter: 24px;
+        padding-top: 32px;
+    }
+
+    .about-layout {
+        flex-direction: column;
+        gap: 32px;
+        margin-top: 40px;
+    }
+
+    .about-media {
+        flex: none;
+        width: 55%;
+        max-width: 260px;
+        margin: 0 auto;
+    }
+
+    .about-content {
+        max-width: none;
+    }
+
+    .about-name {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .about-content .project-button {
+        align-self: center;
+    }
+
+    /* ==========================================
+    ページトップへ戻るボタン
+    ========================================== */
+    .page-top {
+        margin: 72px auto 48px;
     }
 }
 
@@ -117,9 +402,9 @@ SP（〜768px）
         top: 12px;
         right: 12px;
         width: calc(100vw - 24px);
-        max-width: 200px;
+        max-width: 220px;
         min-height: 200px;
-        padding: 64px 28px 28px;
+        padding: 64px 32px 28px 28px;
     }
 
     .hero-text {
@@ -129,5 +414,91 @@ SP（〜768px）
     .text-column {
         font-size: 13px;
         letter-spacing: 0.08em;
+    }
+
+    /* ==========================================
+    制作物セクション
+    ========================================== */
+    .projects-section {
+        --projects-gutter: 20px;
+        padding-top: 24px;
+    }
+
+    .projects-section h2 .ja,
+    .about-section h2 .ja {
+        font-size: 22px;
+    }
+
+    .projects-list {
+        gap: 56px;
+        margin-top: 32px;
+    }
+
+    /* 極小画面でもPCと同じくスマホ画像を右下に重ねる（比率をさらに縮小） */
+    .project-media__sp {
+        width: 38%;
+        right: 0;
+        bottom: -56px;
+    }
+
+    .project-item--01 .project-info {
+        margin-top: 72px;
+    }
+
+    .project-media__pc {
+        border-radius: 12px;
+    }
+
+    .project-info__title {
+        font-size: 17px;
+    }
+
+    .project-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .project-meta__tech::before {
+        content: none;
+    }
+
+    /* VIEW PROJECT：横長にせず、中央寄せの通常サイズに */
+    .project-item--featured .project-button {
+        display: block;
+        width: fit-content;
+        margin: 24px auto 0;
+    }
+
+    .section-divider {
+        height: 32vh;
+        min-height: 220px;
+    }
+
+    /* 03〜05：1列積みにしてカードを大きく見せる */
+    .sub-projects {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        margin-top: 40px;
+    }
+
+    .project-item--sub .project-info__title,
+    .project-item--sub .project-meta {
+        margin-left: 0;
+    }
+
+    /* ==========================================
+    about セクション
+    ========================================== */
+    .about-media {
+        width: 70%;
+        max-width: 220px;
+    }
+
+    .about-name {
+        font-size: 22px;
+    }
+
+    .about-text {
+        font-size: 15px;
     }
 }

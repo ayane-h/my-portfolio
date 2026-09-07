@@ -164,9 +164,9 @@ ul a {
 .menu-panel {
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: 40px;
     width: 250px;
-    min-height: 260px;
+    min-height: 220px;
     padding: 80px 40px 40px;
     background-color: #E8E1D8;
     border-radius: 12px;
@@ -196,8 +196,9 @@ ul a {
 .menu-panel-nav a {
     display: block;
     color: #333333;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
+    padding-left: 24px;
     transition: opacity 0.2s ease;
 }
 
