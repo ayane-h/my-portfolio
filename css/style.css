@@ -87,6 +87,10 @@ nav {
     background-color: #333333;
 }
 
+#header.is-over-divider .burger-btn span {
+    background-color: #FFFFFF;
+}
+
 ul a {
     color: #FFFFFF;
     font-size: 14px;
@@ -96,8 +100,10 @@ ul a {
 }
 
 .burger-btn {
-    position: fixed;      /* absolute → fixed。ヘッダーから切り離して単独で画面に固定 */
-    top: 45px;            /* ヘッダー基準のtop:50%だったので、画面基準の数値に置き換え。見た目を見て微調整してください */
+    position: fixed;
+    /* absolute → fixed。ヘッダーから切り離して単独で画面に固定 */
+    top: 45px;
+    /* ヘッダー基準のtop:50%だったので、画面基準の数値に置き換え。見た目を見て微調整してください */
     right: 4%;
     width: 28px;
     height: 20px;
@@ -114,7 +120,7 @@ ul a {
     height: 1px;
     background-color: #FFFFFF;
     transition: transform 0.3s ease, opacity 0.3s ease,
-    top 0.3s ease background-color 0.3s ease;
+        top 0.3s ease background-color 0.3s ease;
 }
 
 .burger-btn span:nth-child(1) {
@@ -158,9 +164,9 @@ ul a {
 .menu-panel {
     position: fixed;
     top: 20px;
-    right: 20px;
+    right: 40px;
     width: 250px;
-    min-height: 260px;
+    min-height: 220px;
     padding: 80px 40px 40px;
     background-color: #E8E1D8;
     border-radius: 12px;
@@ -190,8 +196,9 @@ ul a {
 .menu-panel-nav a {
     display: block;
     color: #333333;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 400;
+    padding-left: 24px;
     transition: opacity 0.2s ease;
 }
 
@@ -393,7 +400,7 @@ Keyframes（アニメーション定義）
 見出し共通（h2）
 ========================================== */
 h2 {
-    
+
     display: flex;
     flex-direction: column;
     /* 上下に並べる */
@@ -560,7 +567,7 @@ h2 .ja {
     font-size: 15px;
 }
 
-.project-meta__date{
+.project-meta__date {
     font-weight: 400;
 }
 
@@ -578,7 +585,7 @@ h2 .ja {
 }
 
 .project-item--sub {
-    flex: 0 0 calc((100% - 140px) / 3);
+    flex: 0 0 calc((100% - 90px) / 3);
     text-align: left;
 }
 
@@ -673,4 +680,104 @@ h2 .ja {
         transform: scale3d(1, 1, 1);
         transform-origin: 0 0;
     }
+}
+
+/* ---------- 区切り画像 ---------- */
+.section-divider {
+    width: 100%;
+    margin-top: 160px;
+    margin-bottom: 70px;
+}
+
+/* ==========================================
+about セクション
+========================================== */
+
+.about-section {
+    --about-gutter: 70px;
+    padding: 50px var(--about-gutter) 0;
+}
+
+.about-section h2 .ja {
+    font-size: 32px;
+}
+
+/* 余白　画像　余白　テキスト　余白 のレイアウト */
+.about-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 120px;
+    margin-top: 64px;
+    margin-left: 150px;
+}
+
+.about-media {
+    flex: 0 0 360px;
+}
+
+
+.about-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* テキスト側 */
+.about-content {
+    flex: 1;
+    max-width: 600px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-name {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 300;
+}
+
+.about-block {
+    margin-top: 24px;
+}
+
+.about-text {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* VIEW MORE　*/
+.about-content .project-button {
+    align-self: flex-end;
+    margin-top: 40px;
+}
+
+/* ==========================================
+ページトップへ戻るボタン
+========================================== */
+.page-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+
+    width: fit-content;
+    margin: 100px auto 60px; /* 上下の余白はお好みで */
+
+    color: #333333;
+    text-decoration: none;
+}
+
+.page-top__line {
+    display: block;
+    width: 1px;
+    height: 60px;
+    background-color: #333333;
+}
+
+.page-top__text {
+    font-size: 13px;
+    letter-spacing: 0.15em;
 }
