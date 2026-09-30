@@ -58,9 +58,10 @@ ol {
 }
 
 nav {
-    margin-left: auto;
-    margin-right: 90px;
-    /* ロゴがある場合、メニューを自動で右端に寄せます */
+    position: fixed;
+    top: 41px;
+    right: 120px;
+    z-index: 210;
 }
 
 /* メニューの文字を横並びにする */
@@ -72,17 +73,18 @@ nav {
     margin: 0;
     padding: 0;
 
-    transition:
-        opacity 0.45s ease,
-        transform 0.45s ease;
-    transform-origin: right center;
+    transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 /* スクロール時：ナビだけ小さくして消す */
 #header.is-scrolled .nav-list {
     opacity: 0;
-    transform: scale(0.85);
+    transform: translateX(40px);
     pointer-events: none;
+}
+
+#header.is-scrolled .burger-btn span {
+    background-color: #333333;
 }
 
 ul a {
@@ -94,10 +96,9 @@ ul a {
 }
 
 .burger-btn {
-    position: absolute;
-    top: 50%;
+    position: fixed;      /* absolute → fixed。ヘッダーから切り離して単独で画面に固定 */
+    top: 45px;            /* ヘッダー基準のtop:50%だったので、画面基準の数値に置き換え。見た目を見て微調整してください */
     right: 4%;
-    transform: translateY(-50%);
     width: 28px;
     height: 20px;
     background: none;
@@ -112,22 +113,26 @@ ul a {
     left: 0;
     height: 1px;
     background-color: #FFFFFF;
-    transition: transform 0.3s ease, opacity 0.3s ease, top 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease,
+    top 0.3s ease background-color 0.3s ease;
 }
 
 .burger-btn span:nth-child(1) {
     top: 0;
-    width: 100%; /* 1番上：一番長い (28px) */
+    width: 100%;
+    /* 1番上：一番長い (28px) */
 }
 
 .burger-btn span:nth-child(2) {
     top: 9px;
-    width: 70%; /* 真ん中：中くらい (約20px) */
+    width: 70%;
+    /* 真ん中：中くらい (約20px) */
 }
 
 .burger-btn span:nth-child(3) {
     top: 18px;
-    width: 45%; /* 1番下：一番短い (約13px) */
+    width: 45%;
+    /* 1番下：一番短い (約13px) */
 }
 
 .burger-btn.is-active span:nth-child(1) {
@@ -246,7 +251,7 @@ ul a {
 }
 
 /* ==========================================
-アニメーション制御（分離構造） 
+アニメーション制御（分離構造）
  ========================================== */
 /* 1. 初回演出（最前面レイヤー：1周目・1枚目専用） - z-index: 2 で手前に配置 - 無限ループ（infinite）ではなく「1」回のみ実行 */
 .image.slide-once {
@@ -273,7 +278,7 @@ ul a {
 }
 
 /* ==========================================
-Keyframes（アニメーション定義） 
+Keyframes（アニメーション定義）
 ========================================== */
 /* 初回1回目専用：右からスライドイン */
 @keyframes first-slide-animation {
@@ -382,4 +387,290 @@ Keyframes（アニメーション定義）
 .text-column {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================
+見出し共通（h2）
+========================================== */
+h2 {
+    
+    display: flex;
+    flex-direction: column;
+    /* 上下に並べる */
+    gap: 4px;
+    /* 隙間の調整 */
+    font-weight: normal;
+}
+
+/* 英語サブタイトル */
+h2 .en {
+    font-size: 0.9rem;
+    color: #4a5568;
+    /* 文字色 */
+    display: flex;
+    align-items: center;
+    /* 丸と文字の高さを揃える */
+    gap: 6px;
+    /* 丸と文字の間隔 */
+}
+
+/* 左側の黒丸 */
+h2 .en::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    /* 丸の幅 */
+    height: 10px;
+    /* 丸の高さ */
+    background-color: #4a5568;
+    /* 丸の色 */
+    border-radius: 50%;
+    /* 完全な丸にする */
+    transform: translateY(1px);
+}
+
+/* 日本語メインタイトル（基本値。制作物セクション内は下の .projects-section h2 .ja で32pxに上書き） */
+h2 .ja {
+    font-size: 1.8rem;
+    color: #1a202c;
+    line-height: 1.2;
+}
+
+/* ==========================================
+制作物セクション
+========================================== */
+
+.projects-section {
+    --projects-gutter: 70px;
+    padding: 50px var(--projects-gutter) 0;
+}
+
+.projects-section h2 .ja {
+    font-size: 32px;
+}
+
+.projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+    margin-top: 64px;
+}
+
+/* ---------- 01・02：大きい2カラム作品（.project-item--featured） ---------- */
+.project-item--featured {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.project-item--02 .project-media {
+    flex: 1.7;
+    align-self: stretch;
+    min-width: 0;
+}
+
+.project-item--featured .project-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/* 01：PC画像 + スマホ画像を重ねて配置 */
+.project-item--01 .project-media {
+    position: relative;
+    width: 830px;
+}
+
+.project-media__pc {
+    display: block;
+    width: 755px;
+    border-radius: 23px;
+}
+
+.project-media__sp {
+    position: absolute;
+    right: 0;
+    bottom: -180px;
+    width: 238px;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25));
+}
+
+.project-item--01 .project-info {
+    margin-top: 450px;
+}
+
+.project-item--02 .project-info {
+    margin-top: 149px;
+    margin-left: 60px;
+}
+
+.project-item--02 .project-media__image {
+    width: 100%;
+    object-fit: cover;
+}
+
+.project-item--02 .project-info {
+    /* 画像の上端を基準に149px下げた位置からテキストが始まる */
+    margin-top: 149px;
+}
+
+/* 画像ホバー */
+.project-media {
+    display: block;
+    cursor: pointer;
+}
+
+.project-media__pc,
+.project-item--02 .project-media__image {
+    transition: transform 0.4s ease;
+}
+
+.project-media:hover .project-media__pc,
+.project-item--02 .project-media:hover .project-media__image {
+    transform: scale(1.03);
+}
+
+/* ---------- 01・02 共通：テキストまわり ---------- */
+.project-info__title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 300;
+    color: #1a202c;
+}
+
+.project-item--featured .project-info__text {
+    margin: 8px 0 0 40px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.project-item--featured .project-info__text:first-of-type {
+    margin-top: 65px
+}
+
+.project-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 50px;
+    font-weight: 300;
+}
+
+.project-meta__date,
+.project-meta__tech {
+    font-size: 15px;
+}
+
+.project-meta__date{
+    font-weight: 400;
+}
+
+.project-meta__tech {
+    color: #53636A;
+}
+
+/* ---------- 03〜05：サブ作品（.project-item--sub）横並び3列 ---------- */
+.sub-projects {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+    padding-left: 51px;
+    margin-top: 80px;
+}
+
+.project-item--sub {
+    flex: 0 0 calc((100% - 140px) / 3);
+    text-align: left;
+}
+
+.project-item--sub .project-media__image {
+    width: 100%;
+    height: auto;
+}
+
+.project-item--sub .project-info__title {
+    margin-top: 20px;
+    font-size: 18px;
+    /* 指定なしのため01/02より少し小さめに設定。要調整 */
+}
+
+.project-item--sub .project-meta {
+    margin-top: 8px;
+    gap: 12px;
+}
+
+.project-item--sub .project-info__title,
+.project-item--sub .project-meta {
+    margin-left: 20%;
+}
+
+.project-item--sub .project-media__image {
+    transition: transform 0.4s ease;
+}
+
+.project-item--sub .project-media:hover .project-media__image {
+    transform: scale(1.03);
+}
+
+/* ---------- VIEW PROJECT ボタン ----------
+参考コード（border:3px / serif / 中央寄せ大ボタン）から、
+サイトの細めボーダー・Noto Sans JP・左寄せ小ボタンに調整。
+ホバー時に右側の線が伸びるアニメーションはそのまま活用。
+------------------------------------------- */
+.project-button {
+    display: inline-block;
+    position: relative;
+    margin-top: 35px;
+    padding: 14px 40px;
+    border: 0.5px solid #333333;
+    font-family: "Noto Sans JP", sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: #333333;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.project-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    width: 50px;
+    height: 1px;
+    background: #333333;
+    transition: all 0.3s ease;
+}
+
+.project-button:hover {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.project-button:hover::after {
+    animation: project-button-line 700ms;
+}
+
+@keyframes project-button-line {
+    0% {
+        transform: scale3d(1, 1, 1);
+        transform-origin: 100% 0;
+    }
+
+    50% {
+        transform: scale3d(0, 1, 1);
+        transform-origin: 100% 0;
+    }
+
+    50.1% {
+        transform: scale3d(0, 1, 1);
+        transform-origin: 0 0;
+    }
+
+    100% {
+        transform: scale3d(1, 1, 1);
+        transform-origin: 0 0;
+    }
 }
