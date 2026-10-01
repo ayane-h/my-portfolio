@@ -89,6 +89,7 @@
     }
 
     .project-item--featured .project-info,
+    .project-item--02 .project-media,
     .project-item--02 .project-media {
         flex: none;
     }
@@ -102,29 +103,34 @@
         width: 100%;
     }
 
-    .project-media__pc,
-    .project-item--02 .project-media__image {
-        width: 100%;
-    }
-
-    /* スマホ画像はPCと同じく右下に重ねる（位置はOKなのでサイズのみ縮小＝3分の2） */
-    .project-media__sp {
-        width: 25%;
-        right: 0;
-        bottom: -110px;
-    }
-
+    /* 01：画像1枚なので、画像のすぐ下にテキスト */
     .project-item--01 .project-info {
-        margin-top: 100px;
+        margin-top: 32px;
     }
 
-    /* 02はDOM順がテキスト→画像なので、画像を視覚的に先頭へ */
+    /* 02：DOM順がテキスト→画像なので、画像を視覚的に先頭へ */
     .project-item--02 .project-media {
         order: -1;
     }
 
+    .project-item--02 {
+        margin-bottom: 0;
+    }
+
+    .project-item--02 .project-media__pc {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    /* 02：スマホ画像はPC画像の左下に重ねる（サイズのみ縮小） */
+    .project-item--02 .project-media__sp {
+        width: 25%;
+        bottom: -110px;
+    }
+
+    /* スマホ画像のはみ出し分、テキストを下げる */
     .project-item--02 .project-info {
-        margin-top: 32px;
+        margin-top: 100px;
         margin-left: 0;
     }
 
@@ -134,6 +140,20 @@
 
     .project-item--featured .project-info__text:first-of-type {
         margin-top: 24px;
+    }
+
+    .project-item--featured .project-meta {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+    }
+
+    .project-item--featured .project-meta__tech::before {
+        content: "／";
+        margin-right: 12px;
+        color: #53636A;
     }
 
     /* レスポンシブ表示にはホバー操作がないため、
@@ -163,20 +183,6 @@
     .project-item--sub .project-info__title,
     .project-item--sub .project-meta {
         margin-left: 0;
-    }
-
-    .project-item--featured .project-meta {
-        flex-direction: row;
-        align-items: center;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-top: 28px;
-    }
-
-    .project-item--featured .project-meta__tech::before {
-        content: "／";
-        margin-right: 12px;
-        color: #53636A;
     }
 
     /* ==========================================
@@ -274,14 +280,9 @@ SP（〜768px）
         border-radius: 16px;
     }
 
-    .project-media__sp {
+    .project-item--02 .project-media__sp {
         width: 34%;
-        right: 0;
         bottom: -80px;
-    }
-
-    .project-item--01 .project-info {
-        margin-top: 100px;
     }
 
     .project-info__title {
@@ -295,10 +296,6 @@ SP（〜768px）
 
     .project-item--featured .project-info__text:first-of-type {
         margin-top: 16px;
-    }
-
-    .project-meta {
-        margin-top: 32px;
     }
 
     .project-button {
@@ -342,10 +339,6 @@ SP（〜768px）
         width: 55%;
         max-width: 260px;
         margin: 0 auto;
-    }
-
-    .about-content {
-        max-width: none;
     }
 
     .about-name {
@@ -434,31 +427,36 @@ SP（〜768px）
         margin-top: 32px;
     }
 
-    /* 極小画面でもPCと同じくスマホ画像を右下に重ねる（比率をさらに縮小） */
-    .project-media__sp {
-        width: 38%;
-        right: 0;
-        bottom: -56px;
-    }
-
-    .project-item--01 .project-info {
-        margin-top: 72px;
-    }
-
     .project-media__pc {
         border-radius: 12px;
+    }
+
+    /* 01：画像1枚なので、画像のすぐ下にテキスト */
+    .project-item--01 .project-info {
+        margin-top: 24px;
+    }
+
+    /* 02：極小画面でもスマホ画像を左下に重ねる（比率をさらに縮小） */
+    .project-item--02 .project-media__sp {
+        width: 26%;
+        bottom: -40px;
+    }
+
+    .project-item--02 .project-info {
+        margin-top: 56px;
     }
 
     .project-info__title {
         font-size: 17px;
     }
 
-    .project-meta {
+    /* 1024pxの .project-item--featured .project-meta に負けないよう同じ強さに */
+    .project-item--featured .project-meta {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .project-meta__tech::before {
+    .project-item--featured .project-meta__tech::before {
         content: none;
     }
 
@@ -479,11 +477,6 @@ SP（〜768px）
         grid-template-columns: 1fr;
         gap: 40px;
         margin-top: 40px;
-    }
-
-    .project-item--sub .project-info__title,
-    .project-item--sub .project-meta {
-        margin-left: 0;
     }
 
     /* ==========================================

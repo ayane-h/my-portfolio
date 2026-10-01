@@ -119,8 +119,9 @@ ul a {
     left: 0;
     height: 1px;
     background-color: #FFFFFF;
+    /* 【修正】top の後にカンマが抜けていて transition 全体が無効になっていた */
     transition: transform 0.3s ease, opacity 0.3s ease,
-        top 0.3s ease background-color 0.3s ease;
+        top 0.3s ease, background-color 0.3s ease;
 }
 
 .burger-btn span:nth-child(1) {
@@ -357,6 +358,7 @@ Keyframes（アニメーション定義）
     gap: 1rem;
 }
 
+/* 【整理】2か所に分かれていた .text-column を1つにまとめた */
 .text-column {
     font-size: 16px;
 
@@ -365,6 +367,9 @@ Keyframes（アニメーション定義）
     opacity: 0;
     transform: translateY(40px);
     animation: text-slide-up 1s ease-out forwards;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .text-column:nth-child(1) {
@@ -389,11 +394,6 @@ Keyframes（アニメーション定義）
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-.text-column {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 /* ==========================================
@@ -470,39 +470,52 @@ h2 .ja {
     gap: 40px;
 }
 
-.project-item--02 .project-media {
-    flex: 1.7;
-    align-self: stretch;
-    min-width: 0;
-}
-
 .project-item--featured .project-info {
     flex: 1;
     min-width: 0;
 }
 
-/* 01：PC画像 + スマホ画像を重ねて配置 */
-.project-item--01 .project-media {
-    position: relative;
-    width: 830px;
+/* 画像（共通） */
+.project-media {
+    display: block;
+    cursor: pointer;
 }
 
+/* 【整理】01・02どちらも上書きしていた 755px をやめ、基本を100%に */
 .project-media__pc {
     display: block;
-    width: 755px;
+    width: 100%;
     border-radius: 23px;
+    transition: transform 0.4s ease;
 }
 
+/* 【整理】スマホ画像は02だけで使うので、位置・サイズは02側で指定 */
 .project-media__sp {
     position: absolute;
-    right: 0;
-    bottom: -180px;
-    width: 238px;
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.25));
+}
+
+/* 画像ホバー */
+.project-media:hover .project-media__pc {
+    transform: scale(1.03);
+}
+
+/* ---------- 01：モックアップ画像1枚 ---------- */
+.project-item--01 .project-media {
+    flex: 1.6;
+    min-width: 0;
 }
 
 .project-item--01 .project-info {
     margin-top: 450px;
+}
+
+/* ---------- 02：テキスト左・画像右、スマホ画像をPC画像の左下に重ねる ---------- */
+/* 【整理】2か所に分かれていた .project-item--02 .project-media を1つにまとめた */
+.project-item--02 .project-media {
+    position: relative;
+    flex: 1.7;
+    min-width: 0;
 }
 
 .project-item--02 .project-info {
@@ -510,30 +523,25 @@ h2 .ja {
     margin-left: 60px;
 }
 
-.project-item--02 .project-media__image {
-    width: 100%;
-    object-fit: cover;
+.project-item--02 .project-media__pc {
+    width: 91%;
+    /* 01の 755/830 と同じ比率 */
+    margin-left: auto;
+    /* PC画像を右寄せにして、左側にスマホ画像のスペースを作る */
 }
 
-.project-item--02 .project-info {
-    /* 画像の上端を基準に149px下げた位置からテキストが始まる */
-    margin-top: 149px;
+.project-item--02 .project-media__sp {
+    left: 5px;
 }
 
-/* 画像ホバー */
-.project-media {
-    display: block;
-    cursor: pointer;
-}
+.project-item--02 .project-media__sp {
+        width: 28%;          /* 01の 238/830 と同じ比率 */
+        bottom: -60px;
+    }
 
-.project-media__pc,
-.project-item--02 .project-media__image {
-    transition: transform 0.4s ease;
-}
-
-.project-media:hover .project-media__pc,
-.project-item--02 .project-media:hover .project-media__image {
-    transform: scale(1.03);
+/* はみ出したスマホ画像が03〜05と重ならないよう下に余白 */
+.project-item--02 {
+    margin-bottom: 120px;
 }
 
 /* ---------- 01・02 共通：テキストまわり ---------- */
@@ -551,7 +559,7 @@ h2 .ja {
 }
 
 .project-item--featured .project-info__text:first-of-type {
-    margin-top: 65px
+    margin-top: 65px;
 }
 
 .project-meta {
@@ -589,9 +597,15 @@ h2 .ja {
     text-align: left;
 }
 
+/* 【整理】2か所に分かれていたものを1つにまとめた */
 .project-item--sub .project-media__image {
     width: 100%;
     height: auto;
+    transition: transform 0.4s ease;
+}
+
+.project-item--sub .project-media:hover .project-media__image {
+    transform: scale(1.03);
 }
 
 .project-item--sub .project-info__title {
@@ -608,14 +622,6 @@ h2 .ja {
 .project-item--sub .project-info__title,
 .project-item--sub .project-meta {
     margin-left: 20%;
-}
-
-.project-item--sub .project-media__image {
-    transition: transform 0.4s ease;
-}
-
-.project-item--sub .project-media:hover .project-media__image {
-    transform: scale(1.03);
 }
 
 /* ---------- VIEW PROJECT ボタン ----------
@@ -764,7 +770,8 @@ about セクション
     gap: 12px;
 
     width: fit-content;
-    margin: 100px auto 60px; /* 上下の余白はお好みで */
+    margin: 100px auto 60px;
+    /* 上下の余白はお好みで */
 
     color: #333333;
     text-decoration: none;
@@ -780,4 +787,41 @@ about セクション
 .page-top__text {
     font-size: 13px;
     letter-spacing: 0.15em;
+}
+
+/* ==========================================
+スクロールでふわっと浮かび上がる
+========================================== */
+.js-fadein {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.js-fadein.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 01・02：テキストは画像より少し遅れて出てくる */
+.project-info.js-fadein {
+    transition-delay: 0.2s;
+}
+
+/* 03〜05：カードごとに時間差 */
+.sub-projects .js-fadein:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.sub-projects .js-fadein:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+/* 動きを減らす設定のユーザーにはアニメーションなしで表示 */
+@media (prefers-reduced-motion: reduce) {
+    .js-fadein {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
 }

@@ -28,32 +28,22 @@ burgerBtn.addEventListener("click", () => {
 
 
 // ==========================================
-// ヘッダー：スクロール時にナビを縮小・非表示
+// スクロール時のヘッダー制御
+// ・ファーストビューを過ぎたらナビを非表示（is-scrolled）
+// ・区切り画像の上ではハンバーガーを白に（is-over-divider）
 // ==========================================
 
+// 【修正】header を明示的に取得（id名がそのまま変数として使える仕組みに頼らない）
+const header = document.querySelector("#header");
 const heroSection = document.querySelector(".hero-section");
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY >= heroSection.offsetHeight) {
-        header.classList.add("is-scrolled");
-    } else {
-        header.classList.remove("is-scrolled");
-    }
-});
-
-// ==========================================
-// 区切り画像上でハンバーガーメニューの色を変える
-// ==========================================
-
 const divider = document.querySelector(".section-divider");
 const burgerY = 55;
 
+// 【整理】同じ処理が2つの scroll イベントに分かれていたので1つにまとめた
 window.addEventListener("scroll", () => {
-    if (window.scrollY >= heroSection.offsetHeight) {
-        header.classList.add("is-scrolled");
-    } else {
-        header.classList.remove("is-scrolled");
-    }
+    // ファーストビューを過ぎたかどうか
+    const isScrolled = window.scrollY >= heroSection.offsetHeight;
+    header.classList.toggle("is-scrolled", isScrolled);
 
     // 区切り画像がハンバーガーボタンの位置にかぶっているかどうか
     const dividerRect = divider.getBoundingClientRect();
@@ -70,4 +60,25 @@ const pageTop = document.querySelector(".page-top");
 pageTop.addEventListener("click", (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ==========================================
+// スクロールでふわっと浮かび上がる
+// ==========================================
+
+const fadeTargets = document.querySelectorAll(".js-fadein");
+
+const fadeObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target); // 一度出たら監視をやめる（1回だけ）
+        }
+    });
+}, {
+    rootMargin: "0px 0px -10% 0px" // 画面下から10%入ったところで発火
+});
+
+fadeTargets.forEach((target) => {
+    fadeObserver.observe(target);
 });

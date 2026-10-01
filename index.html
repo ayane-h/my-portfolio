@@ -71,7 +71,7 @@
         <!-- 制作物 -->
         <section id="projects-page" class="projects-section">
 
-            <h2>
+            <h2 class="js-fadein">
                 <span class="en">projects</span>
                 <span class="ja">制作物</span>
             </h2>
@@ -79,15 +79,29 @@
             <!-- 制作物リスト -->
             <div class="projects-list">
 
-                <!-- 作品01：画像（PC+スマホ）→ テキストの順 -->
+                <!-- 作品01：めばえアプリ（画像（PC+スマホ）→ テキストの順） -->
                 <article class="project-item project-item--featured project-item--01">
-                    <a href="#" class="project-media">
-                        <img src="img/日記アプリSS.png" alt="日記アプリPC版画面" class="project-media__pc">
-                        <img src="img/日記アプリスマホSS.png" alt="日記アプリスマホ版画面" class="project-media__sp">
+                    <a href="#" class="project-media js-fadein">
+                        <img src="img/めばえアプリ.png" alt="めばえアプリ画面" class="project-media__pc">
                     </a>
 
-                    <div class="project-info">
-                        <h3 class="project-info__title">01 — DIARY APP</h3>
+                    <div class="project-info js-fadein">
+                        <h3 class="project-info__title">01 — MEBAE APP</h3>
+                        <p class="project-info__text">気になる気持ちを、育てていく。</p>
+                        <p class="project-info__text">企業への気持ちや活動を記録する転職活動アプリ。</p>
+
+                        <div class="project-meta">
+                            <span class="project-meta__date">2026.09 — NOW</span>
+                            <span class="project-meta__tech">React / Gemini API / Cloudflare Workers / D1</span>
+                        </div>
+                        <a class="project-button" href="#">VIEW PROJECT</a>
+                    </div>
+                </article>
+
+                <!-- 作品02：日記アプリ（テキスト → 画像の順。スマホ画像はPC画像の左下に重ねる） -->
+                <article class="project-item project-item--featured project-item--02">
+                    <div class="project-info js-fadein">
+                        <h3 class="project-info__title">02 — DIARY APP</h3>
                         <p class="project-info__text">書いた気持ちを、 別の視点から見つめ直す。</p>
                         <p class="project-info__text">AIによる言いかえ機能を備えた Web日記アプリ。</p>
 
@@ -97,32 +111,18 @@
                         </div>
                         <a class="project-button" href="#">VIEW PROJECT</a>
                     </div>
-                </article>
 
-                <!-- 作品02：テキスト → 画像の順（DOM順を入れ替えるだけで左右反転） -->
-                <article class="project-item project-item--featured project-item--02">
-                    <div class="project-info">
-                        <h3 class="project-info__title">02 — ・・・</h3>
-                        <p class="project-info__text">・・・</p>
-                        <p class="project-info__text">・・・・</p>
-
-                        <div class="project-meta">
-                            <span class="project-meta__date">2026.09 — NOW</span>
-                            <span class="project-meta__tech">・・・</span>
-                        </div>
-                        <a class="project-button" href="#">VIEW PROJECT</a>
-                    </div>
-
-                    <div class="project-media">
-                        <img src="img/projects2.png" alt="作品02画面" class="project-media__image">
-                    </div>
+                    <a href="#" class="project-media js-fadein">
+                        <img src="img/日記アプリSS.png" alt="日記アプリPC版画面" class="project-media__pc">
+                        <img src="img/日記アプリスマホSS.png" alt="日記アプリスマホ版画面" class="project-media__sp">
+                    </a>
                 </article>
 
                 <!-- サブ作品（03以降）：画像 → テキストを縦に並べ、横3列に配置 -->
                 <div class="sub-projects">
 
                     <!-- 03 -->
-                    <article class="project-item project-item--sub">
+                    <article class="project-item project-item--sub js-fadein">
                         <a href="#" class="project-media">
                             <img src="img/projects3.png" alt="作品03画面" class="project-media__image">
                         </a>
@@ -134,7 +134,7 @@
                     </article>
 
                     <!-- 04 -->
-                    <article class="project-item project-item--sub">
+                    <article class="project-item project-item--sub js-fadein">
                         <a href="#" class="project-media">
                             <img src="img/projects4.png" alt="作品04画面" class="project-media__image">
                         </a>
@@ -146,7 +146,7 @@
                     </article>
 
                     <!-- 05 -->
-                    <article class="project-item project-item--sub">
+                    <article class="project-item project-item--sub js-fadein">
                         <a href="#" class="project-media">
                             <img src="img/projects5.png" alt="作品05画面" class="project-media__image">
                         </a>
@@ -168,17 +168,17 @@
         <!-- わたしについて -->
         <section id="aboutme-page" class="about-section">
 
-            <h2>
+            <h2 class="js-fadein">
                 <span class="en">about me</span>
                 <span class="ja">わたしについて</span>
             </h2>
 
-            <div class="about-layout">
+            <div class="about-layout js-fadein">
                 <div class="about-media">
                     <img src="img/AboutMe.png" alt="原田彩音">
                 </div>
 
-                <div class="about-content">
+                <div class="about-content js-fadein">
                     <p class="about-name">AYANE HARADA</p>
 
                     <div class="about-block">
@@ -208,7 +208,7 @@
         </section>
 
         <!-- TOPに戻る -->
-        <a href="#" class="page-top" aria-label="ページトップへ戻る">
+        <a href="#" class="page-top js-fadein" aria-label="ページトップへ戻る">
             <span class="page-top__line"></span>
             <span class="page-top__text">PAGE TOP</span>
         </a>
