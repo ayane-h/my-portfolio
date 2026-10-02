@@ -37,15 +37,30 @@
         </button>
 
         <!-- メニュー展開パネル -->
-        <div class="menu-panel">
-            <nav class="menu-panel-nav">
-                <ul>
-                    <li><a href="#home">ホーム</a></li>
-                    <li><a href="#projects-page">制作物</a></li>
-                    <li><a href="#aboutme-page">わたしについて</a></li>
-                </ul>
-            </nav>
-        </div>
+<div class="menu-panel">
+    <nav class="menu-panel-nav">
+        <ul>
+            <li>
+                <a href="#home">
+                    <span class="menu-en">Home</span>
+                    <span class="menu-ja">ホーム</span>
+                </a>
+            </li>
+            <li>
+                <a href="#projects-page">
+                    <span class="menu-en">Projects</span>
+                    <span class="menu-ja">制作物</span>
+                </a>
+            </li>
+            <li>
+                <a href="#aboutme-page">
+                    <span class="menu-en">About me</span>
+                    <span class="menu-ja">わたしについて</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
     </header>
 
     <main>
@@ -81,7 +96,7 @@
 
                 <!-- 作品01：めばえアプリ（画像（PC+スマホ）→ テキストの順） -->
                 <article class="project-item project-item--featured project-item--01">
-                    <a href="#" class="project-media js-fadein">
+                    <a href="diary.html" class="project-media js-fadein">
                         <img src="img/めばえアプリ.png" alt="めばえアプリ画面" class="project-media__pc">
                     </a>
 
@@ -192,7 +207,7 @@
 
                     <div class="about-block">
                         <p class="about-text">
-                            考えたものを形にし、試行錯誤しながらより良くしていくことが好きです。<br>また日常の中にある、静かな風景や心に残る色に惹かれます。
+                            考えたものを形にし、試行錯誤しながらより良くしていくことが好きです。また日常の中にある、静かな風景や心に残る色に惹かれます。
                         </p>
                     </div>
 
@@ -213,6 +228,15 @@
             <span class="page-top__text">PAGE TOP</span>
         </a>
     </main>
+
+    <footer class="site-footer">
+        <ul class="site-footer__links">
+            <li><a href="#home">ホーム</a></li>
+            <li><a href="#projects-page">制作物</a></li>
+            <li><a href="#aboutme-page">わたしについて</a></li>
+        </ul>
+        <small class="site-footer__copy">© 2026 Ayane Harada</small>
+    </footer>
 
     <script src="js/script.js"></script>
 </body>

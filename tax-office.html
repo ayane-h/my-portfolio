@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAX OFFICE WEBSITE | Ayane Harada Portfolio</title>
+    <meta name="description" content="「描くことのかたわらに」をコンセプトにした、クリエイター向けの架空の税理士事務所サイトの紹介ページです。">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/project.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header id="header" class="is-scrolled">
+        <p id="home">
+            <a href="index.html">
+                <img src="img/ポートフォリオロゴ(333).svg" alt="サイトロゴ" width="200" height="50">
+            </a>
+        </p>
+
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html#projects-page">制作物</a></li>
+                <li><a href="index.html#aboutme-page">わたしについて</a></li>
+            </ul>
+        </nav>
+
+        <!-- ハンバーガーメニュー -->
+        <button class="burger-btn" aria-label="メニューを開く" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- メニュー展開パネル -->
+        <div class="menu-panel">
+            <nav class="menu-panel-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <span class="menu-en">Home</span>
+                            <span class="menu-ja">ホーム</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#projects-page">
+                            <span class="menu-en">Projects</span>
+                            <span class="menu-ja">制作物</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#aboutme-page">
+                            <span class="menu-en">About me</span>
+                            <span class="menu-ja">わたしについて</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="detail-page">
+
+        <h1 class="detail-title">TAX OFFICE WEBSITE</h1>
+
+        <!-- メイン画像（画面幅いっぱい） -->
+        <div class="detail-hero js-fadein">
+            <!-- 画像を用意したら、下のコメントを外してください -->
+            <!-- <img src="img/tax-office/main.png" alt="税理士事務所サイトのトップページ"> -->
+        </div>
+
+        <!-- サイトへのリンク＋ひとこと説明 -->
+        <div class="detail-intro js-fadein">
+            <!-- href に公開中のサイトのURLを入れてください -->
+            <a class="detail-button" href="#" target="_blank" rel="noopener noreferrer">
+                サイトを見る<span class="visually-hidden">（別タブで開きます）</span>
+            </a>
+            <p class="detail-lead">「描くことのかたわらに」をコンセプトに、イラストレーターを中心とした<br>クリエイター向けの、架空の税理士事務所サイトを制作しました。</p>
+        </div>
+
+        <!-- 概要表 -->
+        <dl class="detail-spec js-fadein">
+            <div class="detail-spec__row">
+                <dt>制作時期</dt>
+                <dd>2026.06</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>Tools</dt>
+                <dd>VSCode / Figma</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>制作</dt>
+                <dd>個人制作</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>公開</dt>
+                <dd>GitHub Pages</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>担当</dt>
+                <dd>企画 / 情報設計 / UI設計<br>デザイン / フロントエンド</dd>
+            </div>
+            <!-- 内容が長いので、2列ぶんの幅を使う -->
+            <div class="detail-spec__row detail-spec__row--wide">
+                <dt>Frontend</dt>
+                <dd>HTML / CSS / JavaScript<br>レスポンシブ対応 / FAQアコーディオン / ナビゲーション</dd>
+            </div>
+        </dl>
+
+        <!-- 本文 -->
+        <div class="detail-body">
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">制作背景</h2>
+                <div class="detail-section__content">
+                    <p>20〜40代のイラストレーターを中心としたクリエイター向けの、小さな税理士事務所を想定。事務所のコンセプトやターゲット設定から、デザイン・実装まで一貫して制作しました。</p>
+                </div>
+            </section>
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">特徴</h2>
+                <div class="detail-section__content">
+                    <ul class="detail-points">
+                        <li>
+                            <h3>01｜クリエイターに特化したサービス設計</h3>
+                            <p>開業時・日々の事業運営・事業成長の3つの段階に合わせて料金プランを設定し、活動状況に応じて選びやすい構成にしました。</p>
+                        </li>
+                        <li>
+                            <h3>02｜相談までの導線設計</h3>
+                            <p>CONCEPT → SERVICES → PRICE → FLOW → FAQ → CONTACTの順に情報を配置し、事務所を知るところから相談まで自然につながる構成にしました。</p>
+                        </li>
+                        <li>
+                            <h3>03｜信頼感と親しみやすさを両立したデザイン</h3>
+                            <p>税理士事務所としての信頼感を保ちながら、クリエイターが相談しやすい雰囲気になるよう、写真・色・タイポグラフィ・線画のビジュアルを設計しました。</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">工夫したポイント</h2>
+                <div class="detail-section__content">
+                    <ul class="detail-points">
+                        <li>
+                            <h3>01｜架空の事務所にリアリティを持たせる</h3>
+                            <p>代表者の経歴や開業の背景、料金プランまで具体的に設定し、実際に相談できる事務所をイメージしながら、サイト全体の情報やデザインを設計しました。</p>
+                        </li>
+                        <li>
+                            <h3>02｜CSSによるレスポンシブ対応</h3>
+                            <p>PC・タブレット・スマートフォンそれぞれの画面幅に合わせて、レイアウトや余白、ナビゲーションの表示を調整しました。端末ごとに見やすく、操作しやすいサイトを目指しました。</p>
+                        </li>
+                        <li>
+                            <h3>03｜JavaScriptで操作性を向上</h3>
+                            <p>FAQのアコーディオンやナビゲーションなど、ユーザーの操作に応じて表示が変化する機能をJavaScriptで実装しました。必要な情報にアクセスしやすく、直感的に操作できることを意識しました。</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- 前後の作品・一覧へのリンク -->
+        <div class="detail-pager js-fadein">
+            <a class="detail-pager__prev" href="diary.html">← 02<span class="detail-pager__name"> DIARY APP</span></a>
+            <a class="detail-pager__all" href="index.html#projects-page">制作物一覧</a>
+            <!-- 04の紹介ページができたら、コメントを外してファイル名を合わせてください -->
+            <!-- <a class="detail-pager__next" href="portfolio.html">04<span class="detail-pager__name"> PORTFOLIO WEBSITE</span> →</a> -->
+        </div>
+
+        <!-- TOPに戻る -->
+        <a href="#" class="page-top js-fadein" aria-label="ページトップへ戻る">
+            <span class="page-top__line"></span>
+            <span class="page-top__text">PAGE TOP</span>
+        </a>
+    </main>
+
+    <footer class="site-footer">
+        <ul class="site-footer__links">
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="index.html#projects-page">制作物</a></li>
+            <li><a href="index.html#aboutme-page">わたしについて</a></li>
+        </ul>
+        <small class="site-footer__copy">© 2026 Ayane Harada</small>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

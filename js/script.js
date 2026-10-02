@@ -17,7 +17,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 const burgerBtn = document.querySelector(".burger-btn");
 const menuPanel = document.querySelector(".menu-panel");
+const menuLinks = document.querySelectorAll(".menu-panel-nav a");
 
+// メニューを閉じる処理（ボタン以外からも使うので関数にまとめる）
+function closeMenu() {
+    burgerBtn.classList.remove("is-active");
+    menuPanel.classList.remove("is-open");
+    burgerBtn.setAttribute("aria-expanded", false);
+}
+
+// ボタンで開閉
 burgerBtn.addEventListener("click", () => {
     const isOpen = burgerBtn.classList.toggle("is-active");
 
@@ -26,6 +35,10 @@ burgerBtn.addEventListener("click", () => {
     burgerBtn.setAttribute("aria-expanded", isOpen);
 });
 
+// メニュー内のリンクを押したら閉じる
+menuLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+});
 
 // ==========================================
 // スクロール時のヘッダー制御
@@ -40,6 +53,7 @@ const divider = document.querySelector(".section-divider");
 const burgerY = 55;
 
 // 【整理】同じ処理が2つの scroll イベントに分かれていたので1つにまとめた
+if (heroSection && divider) {
 window.addEventListener("scroll", () => {
     // ファーストビューを過ぎたかどうか
     const isScrolled = window.scrollY >= heroSection.offsetHeight;
@@ -50,6 +64,7 @@ window.addEventListener("scroll", () => {
     const isOverDivider = dividerRect.top <= burgerY && dividerRect.bottom >= burgerY;
     header.classList.toggle("is-over-divider", isOverDivider);
 });
+}
 
 // ==========================================
 // トップページに戻るボタン
@@ -82,3 +97,82 @@ const fadeObserver = new IntersectionObserver((entries, observer) => {
 fadeTargets.forEach((target) => {
     fadeObserver.observe(target);
 });
+
+// iOS Safari でタップ時の :active を有効にする
+document.addEventListener("touchstart", () => {}, { passive: true });
+
+// ==========================================
+// 紹介ページ：スクリーンショットの矢印ボタン
+// ==========================================
+
+const galleryTrack = document.querySelector(".detail-gallery__track");
+
+// トップページにはギャラリーがないので、あるときだけ動かす
+if (galleryTrack) {
+    const prevBtn = document.querySelector(".detail-gallery__arrow--prev");
+    const nextBtn = document.querySelector(".detail-gallery__arrow--next");
+
+    // 画像1枚分（幅＋間隔）だけ横に動かす。direction は 1 で次へ、-1 で前へ
+    function scrollGallery(direction) {
+        const item = galleryTrack.querySelector(".detail-gallery__item");
+        const gap = parseFloat(getComputedStyle(galleryTrack).columnGap) || 0;
+
+        galleryTrack.scrollBy({
+            left: direction * (item.offsetWidth + gap),
+            behavior: "smooth"
+        });
+    }
+
+    // 端まで来たら、その方向の矢印を隠す
+    function updateArrows() {
+        const maxScroll = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+
+        prevBtn.hidden = galleryTrack.scrollLeft <= 1;
+        nextBtn.hidden = galleryTrack.scrollLeft >= maxScroll - 1;
+    }
+
+    prevBtn.addEventListener("click", () => scrollGallery(-1));
+    nextBtn.addEventListener("click", () => scrollGallery(1));
+    galleryTrack.addEventListener("scroll", updateArrows);
+    window.addEventListener("resize", updateArrows);
+
+    updateArrows();
+
+        // ------------------------------------------
+    // 掴んで横スクロール
+    // ------------------------------------------
+    let isDragging = false;
+    let startX = 0;          // 掴んだ瞬間のマウス位置
+    let startScrollLeft = 0; // 掴んだ瞬間のスクロール位置
+
+    galleryTrack.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.pageX;
+        startScrollLeft = galleryTrack.scrollLeft;
+        galleryTrack.classList.add("is-dragging");
+        e.preventDefault(); // 画像そのものがドラッグされるのを防ぐ
+    });
+
+    // 枠の外にマウスが出ても続くよう、window で監視する
+    window.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        galleryTrack.scrollLeft = startScrollLeft - (e.pageX - startX);
+    });
+
+    window.addEventListener("mouseup", () => {
+        if (!isDragging) return;
+        isDragging = false;
+
+        // 離したら、一番近い画像の位置までなめらかに寄せる
+        const item = galleryTrack.querySelector(".detail-gallery__item");
+        const gap = parseFloat(getComputedStyle(galleryTrack).columnGap) || 0;
+        const step = item.offsetWidth + gap;
+        const maxScroll = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+        const target = Math.min(Math.round(galleryTrack.scrollLeft / step) * step, maxScroll);
+
+        galleryTrack.scrollTo({ left: target, behavior: "smooth" });
+
+        // 寄せ終わってからスナップを戻す（すぐ戻すとカクッと飛ぶため）
+        setTimeout(() => galleryTrack.classList.remove("is-dragging"), 500);
+    });
+}

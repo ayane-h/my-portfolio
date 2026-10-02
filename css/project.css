@@ -1,0 +1,580 @@
+@charset "utf-8";
+
+/* ==========================================
+制作物の紹介ページ（全アプリ共通テンプレート）
+読み込み順：style.css → responsive.css → project.css
+クラス名はトップページと被らないよう、すべて detail- で始めています
+========================================== */
+
+.detail-page {
+    /* アプリごとに色を変えたいときは、ここの値だけ上書きすればOK */
+    --detail-gutter: 70px;
+    --detail-accent: #DC7B4B;
+    /* ラベル・ボタンのオレンジ */
+    --detail-line: #D9D2C8;
+    /* 区切り線 */
+    --detail-card: #FDFBFA;
+    /* 概要表の背景 */
+
+    padding-top: 150px;
+    /* ヘッダー（position:absolute）の分を空ける */
+    font-weight: 400;
+}
+
+/* 画面には出さず、読み上げソフトにだけ伝えるテキスト */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.detail-page+.site-footer {
+    border-top: none;
+}
+
+.detail-points h3 {
+    font-weight: 500;
+    color: #1a202c;   /* タイトルと同じ濃い色 */
+}
+
+/* ==========================================
+ページタイトル
+========================================== */
+.detail-title {
+    position: relative;
+    margin: 0 var(--detail-gutter);
+    padding-bottom: 26px;
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #1a202c;
+}
+
+/* タイトル下の短い線 */
+.detail-title::after {
+    content: "";
+    position: absolute;
+    left: 50px;
+    bottom: 0;
+    width: 90px;
+    height: 1px;
+    background-color: #B9AEA2;
+}
+
+/* ==========================================
+スクリーンショット（横スクロール）
+========================================== */
+.detail-gallery {
+    --gallery-side: 127px;
+    /* 左右の余白 */
+    --gallery-gap: 50px;
+    /* 画像どうしの間隔 */
+    --gallery-visible: 3;
+    /* 一度に見せる枚数 */
+
+    position: relative;
+    max-width: 1440px;
+    margin: 45px auto 0;
+}
+
+.detail-gallery__track {
+    display: flex;
+    gap: var(--gallery-gap);
+    padding: 0 var(--gallery-side);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: var(--gallery-side);
+    scrollbar-width: none;
+    /* スクロールバーを隠す（Firefox） */
+    cursor: grab;
+}
+
+/* 掴んでいる間はスナップを切る（切らないと指に付いてこない） */
+.detail-gallery__track.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+}
+
+.detail-gallery__track::-webkit-scrollbar {
+    display: none;
+    /* スクロールバーを隠す（Chrome / Safari） */
+}
+
+.detail-gallery__item {
+    /* （全体幅 − 間隔の合計）÷ 枚数 */
+    flex: 0 0 calc((100% - var(--gallery-gap) * (var(--gallery-visible) - 1)) / var(--gallery-visible));
+    aspect-ratio: 242 / 526;
+    /* Figmaの画像の縦横比 */
+    border-radius: 28px;
+    overflow: hidden;
+    background-color: #E8E1D8;
+    /* 画像を入れるまでの仮の色 */
+    scroll-snap-align: start;
+}
+
+.detail-gallery__item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 矢印ボタン */
+.detail-gallery__arrow {
+    position: absolute;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: opacity 0.3s ease;
+}
+
+.detail-gallery__arrow[hidden] {
+    display: none;
+}
+
+.detail-gallery__arrow--prev {
+    left: 30px;
+}
+
+.detail-gallery__arrow--next {
+    right: 30px;
+}
+
+/* 「＞」の形：正方形の2辺だけ線を引いて45度回す */
+.detail-gallery__arrow::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    border-top: 5px solid #4A4A4A;
+    border-right: 5px solid #4A4A4A;
+}
+
+.detail-gallery__arrow--next::before {
+    transform: translateX(-6px) rotate(45deg);
+}
+
+.detail-gallery__arrow--prev::before {
+    transform: translateX(6px) rotate(-135deg);
+}
+
+.detail-gallery__arrow:hover {
+    opacity: 0.5;
+}
+
+/* ==========================================
+メイン画像（画面幅いっぱいの1枚）
+========================================== */
+.detail-hero {
+    margin-top: 72px;
+    aspect-ratio: 1440 / 792;
+    /* Figmaの縦横比 */
+    overflow: hidden;
+    background-color: #625855;
+    /* 画像を入れるまでの仮の色 */
+}
+
+.detail-hero img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 概要表：内容が長い行は2列ぶんの幅を使う */
+.detail-spec__row--wide {
+    grid-column: 1 / -1;
+}
+
+/* ==========================================
+アプリを見るボタン＋ひとこと説明
+========================================== */
+.detail-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 105px;
+    padding: 0 var(--detail-gutter);
+    text-align: center;
+}
+
+.detail-button {
+    display: inline-block;
+    min-width: 270px;
+    padding: 18px 40px;
+    border: 1px solid var(--detail-accent);
+    border-radius: 12px;
+    font-size: 15px;
+    letter-spacing: 0.05em;
+    color: var(--detail-accent);
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.detail-button:hover {
+    background-color: var(--detail-accent);
+    color: #FFFFFF;
+}
+
+.detail-lead {
+    margin: 90px 0 0;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* ==========================================
+概要表（制作時期・担当・使用技術など）
+========================================== */
+.detail-spec {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 44px 40px;
+    max-width: 988px;
+    margin: 80px auto 0;
+    padding: 90px 80px 100px 92px;
+    background-color: var(--detail-card);
+    border-radius: 44px;
+    font-size: 15px;
+}
+
+.detail-spec__row {
+    display: grid;
+    grid-template-columns: 154px 1fr;
+    /* ラベル幅 ｜ 内容 */
+    align-items: start;
+}
+
+.detail-spec dt {
+    color: var(--detail-accent);
+}
+
+.detail-spec dd {
+    margin: 0;
+}
+
+/* ==========================================
+本文（制作背景・特徴・工夫したポイント・今後の改善予定）
+========================================== */
+.detail-body {
+    max-width: 1032px;
+    margin: 140px auto 0;
+    border-bottom: 1px solid var(--detail-line);
+}
+
+.detail-section {
+    display: grid;
+    grid-template-columns: 355px 1fr;
+    /* ラベル ｜ 本文 */
+    padding: 48px 20px 44px 40px;
+    border-top: 1px solid var(--detail-line);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* style.css の h2（display:flex など）を紹介ページ用に戻す */
+.detail-section__label {
+    display: block;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--detail-accent);
+}
+
+.detail-section__content p {
+    margin: 0;
+}
+
+/* 「01｜〜」の見出し＋説明のセット */
+.detail-points {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.detail-points h3 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+/* 箇条書き（style.css のリセットで消えている「・」を付け直す） */
+.detail-list {
+    margin-top: 24px;
+    padding-left: 10px;
+}
+
+.detail-list li {
+    position: relative;
+    padding-left: 1.2em;
+}
+
+.detail-list li::before {
+    content: "・";
+    position: absolute;
+    left: 0;
+}
+
+/* ==========================================
+前後の作品・一覧へのリンク
+========================================== */
+.detail-pager {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    /* 左 ｜ 中央 ｜ 右 */
+    align-items: center;
+    gap: 24px;
+    max-width: 1032px;
+    margin: 70px auto 0;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+}
+
+/* 置き場所を列で固定しておくと、01ページで「前へ」がなくても中央がずれない */
+.detail-pager__prev {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.detail-pager__all {
+    grid-column: 2;
+}
+
+.detail-pager__next {
+    grid-column: 3;
+    justify-self: end;
+}
+
+.detail-pager a {
+    transition: opacity 0.2s ease;
+}
+
+.detail-pager a:hover {
+    opacity: 0.5;
+}
+
+/* 紹介ページではPAGE TOPの上の余白を少し広めに */
+.detail-page .page-top {
+    margin-top: 110px;
+}
+
+/* ==========================================
+タブレット（〜1024px）
+========================================== */
+@media screen and (max-width: 1024px) {
+    .detail-page {
+        --detail-gutter: 40px;
+        padding-top: 120px;
+    }
+
+    .detail-title {
+        font-size: 32px;
+    }
+
+    .detail-gallery {
+        --gallery-side: 40px;
+        --gallery-gap: 24px;
+    }
+
+    .detail-gallery__item {
+        border-radius: 22px;
+    }
+
+    /* タッチ操作ではスワイプできるので矢印は出さない */
+    .detail-gallery__arrow {
+        display: none;
+    }
+
+    .detail-intro {
+        margin-top: 72px;
+    }
+
+    .detail-lead {
+        margin-top: 56px;
+    }
+
+    .detail-spec {
+        margin: 64px var(--detail-gutter) 0;
+        padding: 56px 48px;
+        border-radius: 32px;
+        gap: 32px 24px;
+    }
+
+    .detail-spec__row {
+        grid-template-columns: 100px 1fr;
+    }
+
+    .detail-body {
+        margin: 100px var(--detail-gutter) 0;
+    }
+
+    .detail-section {
+        grid-template-columns: 200px 1fr;
+        padding: 40px 0;
+    }
+
+    .detail-pager {
+        margin: 56px var(--detail-gutter) 0;
+    }
+}
+
+/* ==========================================
+SP（〜768px）
+========================================== */
+@media screen and (max-width: 768px) {
+    .detail-page {
+        --detail-gutter: 24px;
+        padding-top: 100px;
+    }
+
+    .detail-title {
+        padding-bottom: 20px;
+        font-size: 28px;
+    }
+
+    .detail-title::after {
+        left: 32px;
+        width: 64px;
+    }
+
+    /* 2枚＋3枚目が少し見える幅にして「横に続きがある」と伝える */
+    .detail-gallery {
+        --gallery-side: 24px;
+        --gallery-gap: 16px;
+        --gallery-visible: 2.3;
+        margin-top: 32px;
+    }
+
+    .detail-spec {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 48px;
+        padding: 40px 32px;
+        border-radius: 24px;
+    }
+
+    /* 1列になるので、関連する項目が続くよう並べ替え
+       （制作時期 → 制作 → 担当 → Tools → Frontend → Backend → API → 公開） */
+    .detail-spec__row:nth-child(1) {
+        order: 1;
+    }
+
+    .detail-spec__row:nth-child(3) {
+        order: 2;
+    }
+
+    .detail-spec__row:nth-child(5) {
+        order: 3;
+    }
+
+    .detail-spec__row:nth-child(2) {
+        order: 4;
+    }
+
+    .detail-spec__row:nth-child(7) {
+        order: 5;
+    }
+
+    .detail-spec__row:nth-child(6) {
+        order: 6;
+    }
+
+    .detail-spec__row:nth-child(4) {
+        order: 7;
+    }
+
+    .detail-spec__row:nth-child(8) {
+        order: 8;
+    }
+
+    .detail-body {
+        margin-top: 72px;
+    }
+
+    /* ラベルを上、本文を下に積む */
+    .detail-section {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 32px 0;
+    }
+
+    .detail-page .page-top {
+        margin-top: 72px;
+    }
+
+    .detail-pager {
+        font-size: 13px;
+        gap: 12px;
+    }
+
+    .detail-pager__name {
+        display: none;
+    }
+
+    .detail-hero {
+        margin-top: 40px;
+    }
+}
+
+/* ==========================================
+小型SP（〜480px）
+========================================== */
+@media screen and (max-width: 480px) {
+    .detail-page {
+        --detail-gutter: 20px;
+        padding-top: 88px;
+    }
+
+    .detail-title {
+        font-size: 24px;
+    }
+
+    /* 1枚＋次が少し見える幅 */
+    .detail-gallery {
+        --gallery-side: 20px;
+        --gallery-gap: 14px;
+        --gallery-visible: 1.4;
+    }
+
+    .detail-gallery__item {
+        border-radius: 18px;
+    }
+
+    .detail-intro {
+        margin-top: 48px;
+    }
+
+    .detail-button {
+        min-width: 0;
+        width: 100%;
+        max-width: 270px;
+        padding: 15px 24px;
+    }
+
+    .detail-lead {
+        margin-top: 40px;
+        text-align: left;
+    }
+
+    .detail-spec {
+        padding: 32px 24px;
+        border-radius: 20px;
+    }
+
+    .detail-spec__row {
+        grid-template-columns: 84px 1fr;
+    }
+
+    .detail-points {
+        gap: 24px;
+    }
+}

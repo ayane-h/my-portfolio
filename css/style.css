@@ -104,7 +104,7 @@ ul a {
     /* absolute → fixed。ヘッダーから切り離して単独で画面に固定 */
     top: 45px;
     /* ヘッダー基準のtop:50%だったので、画面基準の数値に置き換え。見た目を見て微調整してください */
-    right: 4%;
+    right: 70px;
     width: 28px;
     height: 20px;
     background: none;
@@ -164,11 +164,11 @@ ul a {
 
 .menu-panel {
     position: fixed;
-    top: 20px;
-    right: 40px;
+    top: 10px;
+    right: 34px;
     width: 250px;
     min-height: 220px;
-    padding: 80px 40px 40px;
+    padding: 60px 32px 40px 28px;
     background-color: #E8E1D8;
     border-radius: 12px;
     z-index: 100;
@@ -188,23 +188,82 @@ ul a {
     transform: translateY(0) scale(1);
 }
 
+.menu-panel-nav {
+    position: static;
+}
+
 .menu-panel-nav ul {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 28px;
 }
 
+/* 3. リンクが時間差で浮かび上がる（閉じているときは下に待機） */
+.menu-panel-nav li {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.menu-panel.is-open .menu-panel-nav li {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-panel.is-open .menu-panel-nav li:nth-child(1) {
+    transition-delay: 0.15s;
+}
+
+.menu-panel.is-open .menu-panel-nav li:nth-child(2) {
+    transition-delay: 0.25s;
+}
+
+.menu-panel.is-open .menu-panel-nav li:nth-child(3) {
+    transition-delay: 0.35s;
+}
+
+/* 1. 英語＋日本語の2段表記 */
 .menu-panel-nav a {
-    display: block;
-    color: #333333;
-    font-size: 14px;
-    font-weight: 400;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
     padding-left: 24px;
-    transition: opacity 0.2s ease;
+    color: #333333;
 }
 
-.menu-panel-nav a:hover {
-    opacity: 0.5;
+.menu-en {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+.menu-ja {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: #4a5568;
+}
+
+/* 2. ホバーで見出しと同じ丸がふわっと出る */
+.menu-panel-nav a::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 10px;              /* 英語の行の高さの中央。ずれていたらここで調整 */
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #4a5568;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.menu-panel-nav a:hover::before,
+.menu-panel-nav a:focus-visible::before {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .burger-btn.is-active span {
@@ -619,9 +678,15 @@ h2 .ja {
     gap: 12px;
 }
 
-.project-item--sub .project-info__title,
-.project-item--sub .project-meta {
-    margin-left: 20%;
+/* カード全体をリンクの範囲にする（画像の a を引き伸ばす） */
+.project-item--sub {
+    position: relative;
+}
+
+.project-item--sub .project-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
 }
 
 /* ---------- VIEW PROJECT ボタン ----------
@@ -714,7 +779,7 @@ about セクション
     align-items: flex-start;
     gap: 120px;
     margin-top: 64px;
-    margin-left: 150px;
+    margin-left: 110px;
 }
 
 .about-media {
@@ -731,7 +796,7 @@ about セクション
 /* テキスト側 */
 .about-content {
     flex: 1;
-    max-width: 600px;
+    max-width: 530px;
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -749,9 +814,10 @@ about セクション
 
 .about-text {
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
-    line-height: 1.5;
+    line-height: 1.9;
+    letter-spacing: 0.05em;
 }
 
 /* VIEW MORE　*/
@@ -790,6 +856,42 @@ about セクション
 }
 
 /* ==========================================
+フッター
+========================================== */
+.site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin: 0 70px;
+    padding: 28px 0 36px;
+    border-top: 1px solid #D9D2C8;
+    letter-spacing: 0.08em;
+}
+
+.site-footer__links {
+    display: flex;
+    gap: 28px;
+}
+
+/* ul a の白文字・14px を上書き */
+.site-footer__links a {
+    color: #333333;
+    font-size: 13px;
+    transition: opacity 0.2s ease;
+}
+
+.site-footer__links a:hover {
+    opacity: 0.5;
+}
+
+.site-footer__copy {
+    font-size: 12px;
+    font-weight: 300;
+    color: #53636A;
+}
+
+/* ==========================================
 スクロールでふわっと浮かび上がる
 ========================================== */
 .js-fadein {
@@ -817,11 +919,27 @@ about セクション
     transition-delay: 0.3s;
 }
 
+/* 03〜05：カードにホバー／タップでテキストを薄く */
+.project-item--sub .project-info__title,
+.project-item--sub .project-meta {
+    transition: opacity 0.3s ease;
+}
+
+.project-item--sub:hover .project-info__title,
+.project-item--sub:hover .project-meta,
+.project-item--sub:active .project-info__title,
+.project-item--sub:active .project-meta {
+    opacity: 0.5;
+}
+
 /* 動きを減らす設定のユーザーにはアニメーションなしで表示 */
 @media (prefers-reduced-motion: reduce) {
     .js-fadein {
         opacity: 1;
         transform: none;
+        transition: none;
+    }
+    .menu-panel-nav li {
         transition: none;
     }
 }

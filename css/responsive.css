@@ -125,7 +125,7 @@
     /* 02：スマホ画像はPC画像の左下に重ねる（サイズのみ縮小） */
     .project-item--02 .project-media__sp {
         width: 25%;
-        bottom: -110px;
+        bottom: -60px;
     }
 
     /* スマホ画像のはみ出し分、テキストを下げる */
@@ -185,6 +185,10 @@
         margin-left: 0;
     }
 
+    .project-item--sub:active .project-media__image {
+        transform: scale(0.98);
+    }
+
     /* ==========================================
     about セクション
     ========================================== */
@@ -199,6 +203,10 @@
 
     .about-content {
         max-width: none;
+    }
+
+    .site-footer {
+        margin: 0 40px;
     }
 }
 
@@ -281,8 +289,8 @@ SP（〜768px）
     }
 
     .project-item--02 .project-media__sp {
-        width: 34%;
-        bottom: -80px;
+        width: 24%;
+        bottom: -50px;
     }
 
     .project-info__title {
@@ -355,6 +363,13 @@ SP（〜768px）
     ========================================== */
     .page-top {
         margin: 72px auto 48px;
+    }
+
+    .site-footer {
+        flex-direction: column;
+        gap: 16px;
+        margin: 0 24px;
+        padding: 24px 0 32px;
     }
 }
 
@@ -493,5 +508,17 @@ SP（〜768px）
 
     .about-text {
         font-size: 15px;
+    }
+
+    /* ==========================================
+    フッター
+    ========================================== */
+
+    .site-footer {
+        margin: 0 20px;
+    }
+
+    .site-footer__links {
+        gap: 20px;
     }
 }
