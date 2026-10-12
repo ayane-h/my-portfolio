@@ -293,8 +293,10 @@ LIKES / INTERESTS（写真がゆっくり横に流れる）
     }
 }
 
-/* iPhoneで流れる写真が白く抜けないよう、動く帯を別の層で描画させる */
+/* 流れる動きは script.js で帯の left を書き換えて付けるので、CSSのアニメーションは使わない
+   （transform で動かすと、iPhoneで画面外にあった写真が描かれず白く抜けるため） */
 .me-likes__track {
+    position: relative;   /* left で位置を動かせるようにする */
     animation: none;
 }
 

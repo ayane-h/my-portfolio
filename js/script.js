@@ -180,8 +180,9 @@ if (galleryTrack) {
 // ==========================================
 // わたしについてページ：LIKES の写真をゆっくり流す
 // ・ループ用の2セット目を自動で複製（1セット目と必ず同じになる）
-// ・写真の位置をずらすのではなく、枠の中身を横にスクロールさせて流す
-//   （iPhoneで、画面外にあった写真が描かれず白く抜けるのを防ぐため）
+// ・帯の left（位置）を1コマずつ書き換えて流す
+//   transform やスクロールで動かすと、iPhoneのSafariが画面外にあった写真を
+//   描かないまま流してしまい白く抜けるため、毎コマ描き直される left を使う
 // ・速さは「1秒あたり何px動くか」で決める
 // ==========================================
 
@@ -206,7 +207,7 @@ if (likesTrack) {
     // 動きを減らす設定の人には流さない（CSS側で横スクロールに切り替わる）
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    let likesPos = 0;        // 今どれだけスクロールしたか
+    let likesPos = 0;        // 今どれだけ左へ動かしたか
     let loopWidth = 0;       // 1セット分の幅（ここまで来たら最初に戻す）
     let lastTime = null;     // 前のコマの時刻
     let isPaused = false;
@@ -217,7 +218,7 @@ if (likesTrack) {
         loopWidth = likesClone.offsetLeft - likesGroup.offsetLeft;
     }
 
-    // 1コマごとに少しずつスクロールさせる
+    // 1コマごとに少しずつ左へ動かす
     function stepLikes(time) {
         if (lastTime === null) lastTime = time;
 
@@ -232,7 +233,7 @@ if (likesTrack) {
             if (likesPos >= loopWidth) {
                 likesPos -= loopWidth;
             }
-            likesMarquee.scrollLeft = likesPos;
+            likesTrack.style.left = `${-likesPos}px`;
         }
 
         requestAnimationFrame(stepLikes);

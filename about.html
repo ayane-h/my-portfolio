@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/project.css">
     <!-- わたしについてページ専用のCSS（?v= の番号は、修正するたびに1つ増やす） -->
-    <link rel="stylesheet" href="css/about.css?v=2">
+    <link rel="stylesheet" href="css/about.css?v=3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
@@ -195,22 +195,22 @@
                 <span class="en">LIKES / INTERESTS</span>
             </h2>
 
-            <div class="me-likes__marquee js-fadein">
-                <div class="me-likes__marquee js-fadein">
-                    <div class="me-likes__track">
+            <!-- 動く枠には js-fadein を付けない（iPhoneで写真が描かれなくなる原因になるため） -->
+            <div class="me-likes__marquee">
+                <div class="me-likes__track">
 
-                        <!-- 写真はここにだけ書く（ループ用の複製は script.js が自動で作る）
-                        alt には写真の内容を書いてください -->
-                        <ul class="me-likes__group">
-                            <li class="me-likes__item"><img src="img/about/like-01.jpg" alt="紅葉"></li>
-                            <li class="me-likes__item"><img src="img/about/like-03.jpg" alt="白い紫陽花"></li>
-                            <li class="me-likes__item"><img src="img/about/like-04.jpg" alt=""></li>
-                            <li class="me-likes__item"><img src="img/about/like-05.jpg" alt=""></li>
-                            <li class="me-likes__item"><img src="img/about/like-06.jpg" alt=""></li>
-                            <li class="me-likes__item"><img src="img/about/like-07.jpg" alt=""></li>
-                        </ul>
+                    <!-- 写真はここにだけ書く（ループ用の複製は script.js が自動で作る）
+                    alt には写真の内容を書いてください -->
+                    <ul class="me-likes__group">
+                        <li class="me-likes__item"><img src="img/about/like-01.jpg" alt="紅葉"></li>
+                        <li class="me-likes__item"><img src="img/about/like-02.jpg" alt="ポポ"></li>
+                        <li class="me-likes__item"><img src="img/about/like-03.jpg" alt="白い紫陽花"></li>
+                        <li class="me-likes__item"><img src="img/about/like-04.jpg" alt="寿司"></li>
+                        <li class="me-likes__item"><img src="img/about/like-05.jpg" alt="ミッキー"></li>
+                        <li class="me-likes__item"><img src="img/about/like-06.jpg" alt="もな"></li>
+                        <li class="me-likes__item"><img src="img/about/like-07.jpg" alt="大阪の夜景"></li>
+                    </ul>
 
-                    </div>
                 </div>
             </div>
         </section>
@@ -232,7 +232,7 @@
     </footer>
 
     <!-- ?v= の番号は、script.js を修正するたびに1つ増やす -->
-    <script src="js/script.js?v=2"></script>
+    <script src="js/script.js?v=3"></script>
 </body>
 
 </html>
