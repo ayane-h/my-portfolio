@@ -265,36 +265,3 @@ if (likesTrack) {
         }
     }
 }
-
-// ==========================================
-// 【一時的な確認用】LIKES の状態を画面左下に表示する
-// 原因が分かったら、このブロックはまるごと消す
-// ==========================================
-if (document.querySelector(".me-likes__track")) {
-    window.addEventListener("load", () => {
-        const debugBox = document.createElement("div");
-        debugBox.style.cssText =
-            "position:fixed;left:8px;bottom:8px;z-index:9999;background:#000;color:#fff;" +
-            "font:12px/1.5 monospace;padding:8px;white-space:pre;";
-        document.body.appendChild(debugBox);
-
-        // 0.5秒ごとに、今の状態を表示し直す
-        setInterval(() => {
-            const items = document.querySelectorAll(".me-likes__item");
-            const groups = document.querySelectorAll(".me-likes__group");
-            const track = document.querySelector(".me-likes__track");
-            const item8 = items[7] ? items[7].querySelector("img") : null;
-
-            debugBox.textContent = [
-                "写真の枠の数: " + items.length,
-                "セットの数: " + groups.length,
-                "1セット目の幅: " + Math.round(groups[0].getBoundingClientRect().width),
-                "2セット目の位置: " + (groups[1] ? Math.round(groups[1].getBoundingClientRect().left) : "なし"),
-                "帯の幅: " + Math.round(track.getBoundingClientRect().width),
-                "帯の left: " + track.style.left,
-                "動き減らす設定: " + matchMedia("(prefers-reduced-motion: reduce)").matches,
-                "8枚目の画像: " + (item8 ? (item8.complete ? "読込済 " : "未読込 ") + item8.naturalWidth + "px" : "なし")
-            ].join("\n");
-        }, 500);
-    });
-}
