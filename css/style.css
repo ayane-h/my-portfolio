@@ -565,8 +565,23 @@ h2 .ja {
     min-width: 0;
 }
 
-.project-item--01 .project-info {
-    margin-top: 450px;
+/* 途中で改行させたくない言葉のかたまり */
+.keep {
+    display: inline-block;
+}
+
+/* 01：テキストを画像の右下に置き、下へ少しはみ出させる（PC表示のみ） */
+@media screen and (min-width: 1025px) {
+    .project-item--01 {
+        margin-bottom: 120px;
+        align-items: flex-end;      /* テキストを画像の下端にそろえる */
+    }
+
+    .project-item--01 .project-info {
+        margin-top: 0;
+        margin-bottom: -90px;       /* 画像の下端から下へはみ出す量。大きくするほど下がる */
+        margin-left: 30px;
+    }
 }
 
 /* ---------- 02：テキスト左・画像右、スマホ画像をPC画像の左下に重ねる ---------- */
@@ -600,7 +615,7 @@ h2 .ja {
 
 /* はみ出したスマホ画像が03〜05と重ならないよう下に余白 */
 .project-item--02 {
-    margin-bottom: 120px;
+    margin-bottom: 40px;
 }
 
 /* ---------- 01・02 共通：テキストまわり ---------- */
@@ -618,7 +633,7 @@ h2 .ja {
 }
 
 .project-item--featured .project-info__text:first-of-type {
-    margin-top: 65px;
+    margin-top: 36px;
 }
 
 .project-meta {
@@ -687,6 +702,18 @@ h2 .ja {
     content: "";
     position: absolute;
     inset: 0;
+}
+
+/* 02：テキストを画像の左下に置き、下へ少しはみ出させる（PC表示のみ） */
+@media screen and (min-width: 1025px) {
+    .project-item--02 {
+        align-items: flex-end;
+    }
+
+    .project-item--02 .project-info {
+        margin-top: 0;
+        margin-bottom: -70px;
+    }
 }
 
 /* ---------- VIEW PROJECT ボタン ----------
