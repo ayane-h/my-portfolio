@@ -1,0 +1,500 @@
+@charset "utf-8";
+
+/* ==========================================
+わたしについてページ専用
+読み込み順：style.css → responsive.css → project.css → about.css
+トップページの about- と被らないよう、クラス名はすべて me- で始めています
+========================================== */
+
+.me-page {
+    --me-gutter: 70px;    /* 左右の余白 */
+    --me-text: 16px;      /* 本文の文字サイズ */
+    --me-heading: 28px;   /* 名前・見出しの文字サイズ */
+    --me-dark: #272727;   /* BIOGRAPHY の背景色 */
+}
+
+/* 見出し下の線をデザインに合わせてオレンジに
+   （この3行を消すと、DIARY APP などと同じ色に戻ります） */
+.me-page .detail-title::after {
+    background-color: var(--detail-accent);
+}
+
+/* 本文（自己紹介・WHY で共通） */
+.me-text {
+    margin: 0;
+    font-size: var(--me-text);
+    font-weight: 300;
+    line-height: 1.6;
+    color: #4A4A4A;
+}
+
+/* 段落と段落のあいだ */
+.me-text + .me-text {
+    margin-top: 1.2em;
+}
+
+/* 写真は枠いっぱいに広げ、はみ出た分はトリミング */
+.me-intro__photo img,
+.me-why__photo img,
+.me-likes__item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================
+自己紹介（左：テキスト ／ 右：写真）
+========================================== */
+.me-intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;   /* テキストを写真の縦中央に */
+    gap: 40px;
+    margin-top: 34px;
+    padding: 0 var(--me-gutter);
+}
+
+.me-intro__text {
+    flex: 1;
+    min-width: 0;
+    max-width: 550px;
+    padding-left: 25px;
+}
+
+.me-intro__name {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;   /* 日本語名と英語名の文字の下端をそろえる */
+    gap: 6px 22px;
+    margin: 0 0 28px;
+    font-size: var(--me-heading);
+    font-weight: 400;
+    color: #1a202c;
+}
+
+.me-intro__name-en {
+    font-size: 14px;
+    letter-spacing: 0.02em;
+}
+
+.me-intro__photo {
+    flex: 0 0 53%;
+    max-width: 690px;
+    aspect-ratio: 689 / 468;   /* Figmaの縦横比 */
+    border-radius: 56px;
+    overflow: hidden;
+    background-color: #363636; /* 画像を入れるまでの仮の色 */
+}
+
+/* ==========================================
+WHY WEB ENGINEER?（左：画面端までの写真 ／ 右：テキスト）
+========================================== */
+.me-why {
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    margin-top: 136px;
+    padding-right: var(--me-gutter); /* 左は写真を画面端に付けるので、右だけ余白 */
+}
+
+.me-why__photo {
+    flex: 0 0 50%;
+    aspect-ratio: 719 / 418;   /* Figmaの縦横比 */
+    overflow: hidden;
+    background-color: #1F1F1F; /* 画像を入れるまでの仮の色 */
+}
+
+.me-why__text {
+    flex: 1;
+    min-width: 0;
+    max-width: 600px;
+    padding-top: 10px;
+}
+
+/* ● WHY WEB ENGINEER? と見出しのセット
+   （●や英語の文字サイズは style.css の h2 .en がそのまま効きます） */
+.me-why__heading {
+    gap: 34px;          /* 英語ラベルと日本語見出しの間隔 */
+    margin: 0 0 30px;
+}
+
+.me-why__heading .ja {
+    font-size: var(--me-heading);
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+/* ==========================================
+BIOGRAPHY（暗い背景の年表）
+========================================== */
+.me-bio {
+    margin-top: 160px;
+    padding: 120px var(--me-gutter);
+    background-color: var(--me-dark);
+    color: #F4F0EB;
+}
+
+.me-bio__inner {
+    display: grid;
+    grid-template-columns: 35% 1fr;  /* 見出し ｜ 年表 */
+    align-items: start;
+}
+
+/* style.css の h2（display:flex など）をこの見出し用に戻す */
+.me-bio__title {
+    display: block;
+    margin: 0;
+    font-size: 46px;
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+.me-bio__sub {
+    margin: 16px 0 0;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+/* ---------- 年表 ---------- */
+.me-timeline {
+    --year-w: 107px;   /* 年の列の幅。丸と縦線の位置もこの値から決まる */
+
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    padding-top: 68px; /* 1行目を「なぜ、その選択をしたのか」の高さにそろえる */
+}
+
+.me-timeline__item {
+    position: relative; /* 丸と縦線を置くときの基準 */
+    display: grid;
+    grid-template-columns: var(--year-w) 1fr; /* 年 ｜ 内容 */
+    min-height: 84px;   /* 説明が1行でも縦線が短くなりすぎないように */
+}
+
+/* 小さな丸 */
+.me-timeline__item::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: var(--year-w);
+    width: 11px;
+    height: 11px;
+    border: 1px solid #BDB7AF;
+    border-radius: 50%;
+}
+
+/* 丸から下にのびる縦線 */
+.me-timeline__item::after {
+    content: "";
+    position: absolute;
+    top: 19px;
+    bottom: 0;
+    left: calc(var(--year-w) + 5px); /* 丸の中央に合わせる */
+    width: 1px;
+    background-color: #BDB7AF;
+}
+
+.me-timeline__year {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.me-timeline__body {
+    padding-left: 34px;  /* 丸と縦線のぶんを空ける */
+    padding-bottom: 6px;
+}
+
+.me-timeline__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.me-timeline__desc {
+    margin: 8px 0 0;
+    padding-left: 12px;  /* タイトルより少し右に下げる */
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* ==========================================
+LIKES / INTERESTS（写真がゆっくり横に流れる）
+========================================== */
+.me-likes {
+    margin-top: 200px;
+}
+
+.me-likes__heading {
+    margin: 0 var(--me-gutter);
+}
+
+.me-likes__marquee {
+    --likes-width: 330px;    /* 写真1枚の幅 */
+    --likes-gap: 74px;       /* 写真どうしの間隔 */
+    --likes-duration: 60s;   /* 1周にかかる時間。大きくするほどゆっくり */
+
+    margin-top: 90px;
+    overflow: hidden;        /* 画面の外にはみ出た写真を隠す */
+}
+
+/* 2セットを横一列に並べた「帯」。これ全体を左へ動かす */
+.me-likes__track {
+    display: flex;
+    width: max-content;
+    animation: me-marquee var(--likes-duration) linear infinite;
+    /* 左→右に流したいときは、下の1行のコメントを外す */
+    /* animation-direction: reverse; */
+}
+
+/* マウスを乗せている間は止める */
+.me-likes__marquee:hover .me-likes__track {
+    animation-play-state: paused;
+}
+
+.me-likes__group {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--likes-gap);
+    padding-right: var(--likes-gap); /* セットの最後にも間隔を入れて、つなぎ目を自然に */
+}
+
+.me-likes__item {
+    flex: 0 0 var(--likes-width);
+    aspect-ratio: 330 / 214;   /* Figmaの縦横比 */
+    overflow: hidden;
+    background-color: #DAD9D7; /* 画像を入れるまでの仮の色 */
+}
+
+/* 帯の半分（＝1セット分）だけ動かすと、2セット目が1セット目と
+   同じ位置に来るので、最初に戻っても途切れて見えない */
+@keyframes me-marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* PAGE TOP の上の余白 */
+.me-page .page-top {
+    margin-top: 170px;
+}
+
+/* 動きを減らす設定のユーザーには流さず、横スクロールで見られるようにする */
+@media (prefers-reduced-motion: reduce) {
+    .me-likes__marquee {
+        overflow-x: auto;
+    }
+
+    .me-likes__track {
+        animation: none;
+    }
+
+    .me-likes__group[aria-hidden="true"] {
+        display: none;
+    }
+}
+
+/* ==========================================
+タブレット（〜1024px）
+========================================== */
+@media screen and (max-width: 1024px) {
+    .me-page {
+        --me-gutter: 40px;
+        --me-text: 17px;
+        --me-heading: 24px;
+    }
+
+    .me-intro {
+        margin-top: 28px;
+    }
+
+    .me-intro__text {
+        padding-left: 0;
+    }
+
+    .me-intro__photo {
+        flex-basis: 48%;
+        border-radius: 40px;
+    }
+
+    .me-why {
+        gap: 24px;
+        margin-top: 100px;
+    }
+
+    .me-why__photo {
+        flex-basis: 44%;
+    }
+
+    .me-bio {
+        margin-top: 110px;
+        padding: 80px var(--me-gutter);
+    }
+
+    /* 見出しを上、年表を下に積む */
+    .me-bio__inner {
+        grid-template-columns: 1fr;
+    }
+
+    .me-bio__title {
+        font-size: 38px;
+    }
+
+    .me-timeline {
+        padding-top: 48px;
+    }
+
+    .me-likes {
+        margin-top: 120px;
+    }
+
+    .me-likes__marquee {
+        --likes-width: 260px;
+        --likes-gap: 40px;
+        margin-top: 56px;
+    }
+
+    .me-page .page-top {
+        margin-top: 120px;
+    }
+}
+
+/* ==========================================
+SP（〜768px）
+========================================== */
+@media screen and (max-width: 768px) {
+    .me-page {
+        --me-gutter: 24px;
+        --me-text: 16px;
+        --me-heading: 22px;
+    }
+
+    /* 写真を上、テキストを下に積む */
+    .me-intro {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 32px;
+    }
+
+    .me-intro__text {
+        max-width: none;
+    }
+
+    .me-intro__photo {
+        order: -1;        /* HTMLの順番はそのまま、見た目だけ写真を先頭に */
+        flex: none;
+        width: 100%;
+        max-width: none;
+        border-radius: 28px;
+    }
+
+    .me-intro__name {
+        margin-bottom: 20px;
+    }
+
+    .me-why {
+        flex-direction: column;
+        gap: 32px;
+        margin-top: 72px;
+        padding-right: 0;
+    }
+
+    .me-why__photo {
+        flex: none;
+        width: 100%;
+    }
+
+    .me-why__text {
+        max-width: none;
+        padding: 0 var(--me-gutter);
+    }
+
+    .me-why__heading {
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .me-bio {
+        margin-top: 72px;
+        padding: 64px var(--me-gutter);
+    }
+
+    .me-bio__title {
+        font-size: 32px;
+    }
+
+    /* 年を上、内容を下に積む。丸と縦線は左端へ */
+    .me-timeline {
+        --year-w: 0px;
+        gap: 22px;
+        padding-top: 40px;
+    }
+
+    .me-timeline__item {
+        display: block;
+        min-height: 0;
+        padding-left: 28px;
+    }
+
+    .me-timeline__year {
+        margin-bottom: 2px;
+        font-size: 14px;
+    }
+
+    .me-timeline__body {
+        padding-left: 0;
+        padding-bottom: 10px;
+    }
+
+    .me-timeline__desc {
+        padding-left: 0;
+    }
+
+    .me-likes {
+        margin-top: 88px;
+    }
+
+    .me-likes__marquee {
+        --likes-width: 200px;
+        --likes-gap: 20px;
+        --likes-duration: 45s;
+        margin-top: 40px;
+    }
+
+    .me-page .page-top {
+        margin-top: 88px;
+    }
+}
+
+/* ==========================================
+小型SP（〜480px）
+========================================== */
+@media screen and (max-width: 480px) {
+    .me-page {
+        --me-gutter: 20px;
+        --me-text: 15px;
+        --me-heading: 20px;
+    }
+
+    .me-intro__photo {
+        border-radius: 20px;
+    }
+
+    .me-bio__title {
+        font-size: 28px;
+    }
+
+    .me-likes__marquee {
+        --likes-width: 170px;
+        --likes-gap: 16px;
+    }
+}

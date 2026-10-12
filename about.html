@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT ME | Ayane Harada Portfolio</title>
+    <meta name="description" content="原田彩音の自己紹介ページです。Webエンジニアを目指す理由や、これまでの経歴、好きなものを紹介しています。">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/project.css">
+    <!-- わたしについてページ専用のCSS（必ず project.css より後に読み込む） -->
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header id="header" class="is-scrolled">
+        <p id="home">
+            <a href="index.html">
+                <img src="img/ポートフォリオロゴ(333).svg" alt="サイトロゴ" width="200" height="50">
+            </a>
+        </p>
+
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html#projects-page">制作物</a></li>
+                <li><a href="about.html">わたしについて</a></li>
+            </ul>
+        </nav>
+
+        <!-- ハンバーガーメニュー -->
+        <button class="burger-btn" aria-label="メニューを開く" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- メニュー展開パネル -->
+        <div class="menu-panel">
+            <nav class="menu-panel-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <span class="menu-en">Home</span>
+                            <span class="menu-ja">ホーム</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#projects-page">
+                            <span class="menu-en">Projects</span>
+                            <span class="menu-ja">制作物</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <span class="menu-en">About me</span>
+                            <span class="menu-ja">わたしについて</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- detail-page：紹介ページと同じ余白・見出しの位置を使うためのクラス
+         me-page：このページ専用の設定（about.css）を効かせるためのクラス -->
+    <main class="detail-page me-page">
+
+        <!-- 見出し（DIARY APP などと同じ .detail-title を使っているので、同じ位置に出ます） -->
+        <h1 class="detail-title">わたしについて</h1>
+
+        <!-- ==========================================
+        自己紹介（左：テキスト ／ 右：写真）
+        ========================================== -->
+        <section class="me-intro js-fadein">
+            <div class="me-intro__text">
+                <p class="me-intro__name">
+                    原田　彩音
+                    <span class="me-intro__name-en" lang="en">HARADA AYANE</span>
+                </p>
+
+                <p class="me-text">
+                    1997年生まれ、大阪府堺市出身。前職では完全在宅の環境で、採用支援サービスにおけるトークスクリプトの作成や納品進行管理を担当していました。企業や営業担当とのすり合わせを行い、情報を整理して相手に伝わる形にすることを意識して仕事に取り組んできました。
+                </p>
+                <p class="me-text">
+                    今は職業訓練校でプログラミングを学びながら、個人でもWebサイトやWebアプリケーションの制作に取り組んでいます。
+                </p>
+            </div>
+
+            <!-- 写真：img/about/profile.jpg を置くと表示されます -->
+            <div class="me-intro__photo">
+                <img src="img/about/profile.jpg" alt="原田彩音">
+            </div>
+        </section>
+
+        <!-- ==========================================
+        WHY WEB ENGINEER?（左：画面端までの写真 ／ 右：テキスト）
+        ========================================== -->
+        <section class="me-why js-fadein">
+            <!-- 写真：img/about/why.jpg を置くと表示されます。飾りの写真なら alt は空のままでOK -->
+            <div class="me-why__photo">
+                <img src="img/about/why.jpg" alt="">
+            </div>
+
+            <div class="me-why__text">
+                <!-- トップページの「● about me」と同じ仕組み（h2 の中に .en と .ja） -->
+                <h2 class="me-why__heading">
+                    <span class="en">WHY WEB ENGINEER?</span>
+                    <span class="ja">アイデアを形にし、<br>より良いものへ育てていく。</span>
+                </h2>
+
+                <p class="me-text">
+                    Webエンジニアを目指すようになったのは、Web開発が自分で考えたことを実際に形にし、試しながら改善していける仕事だと知ったことがきっかけです。
+                </p>
+                <p class="me-text">
+                    実際に学習や制作を始めると、「こんな機能があればいいな」と考えたアイデアを自分で実装し、目に見える形にできることに面白さを感じました。特に、どうすればユーザーにとって使いやすくなるかを考えながら画面をつくっていくフロントエンド開発に興味があります。
+                </p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+        BIOGRAPHY（暗い背景の年表）
+        ========================================== -->
+        <section class="me-bio">
+            <div class="me-bio__inner">
+
+                <div class="me-bio__head js-fadein">
+                    <h2 class="me-bio__title" lang="en">BIOGRAPHY</h2>
+                    <p class="me-bio__sub">なぜ、その選択をしたのか</p>
+                </div>
+
+                <!-- 年表：順番に意味があるので ol（順序つきリスト）を使用 -->
+                <ol class="me-timeline js-fadein">
+                    <li class="me-timeline__item">
+                        <p class="me-timeline__year">2016-2020</p>
+                        <div class="me-timeline__body">
+                            <h3 class="me-timeline__title">龍谷大学・哲学専攻</h3>
+                            <p class="me-timeline__desc">幼いころから「考えること」が好きで、マイケル・サンデル氏の『ハーバード白熱教室』を好んでみていたこともあり、哲学を専攻する</p>
+                        </div>
+                    </li>
+
+                    <li class="me-timeline__item">
+                        <p class="me-timeline__year">2020-2021</p>
+                        <div class="me-timeline__body">
+                            <h3 class="me-timeline__title">リーガロイヤルホテル大阪</h3>
+                            <p class="me-timeline__desc">祖父が好きだったホテルで、相手のために一歩先を考えて行動するホスピタリティに惹かれ、入社</p>
+                        </div>
+                    </li>
+
+                    <li class="me-timeline__item">
+                        <p class="me-timeline__year">2022-2026</p>
+                        <div class="me-timeline__body">
+                            <h3 class="me-timeline__title">エン株式会社</h3>
+                            <p class="me-timeline__desc">文章を書くことが好きで、当時はWordPressでブログも制作していた。文章を通して人に情報を届ける仕事に興味を持ち、トークスクリプトの作成を担当</p>
+                        </div>
+                    </li>
+
+                    <li class="me-timeline__item">
+                        <p class="me-timeline__year">2023-NOW</p>
+                        <div class="me-timeline__body">
+                            <h3 class="me-timeline__title" lang="en">Illustration</h3>
+                            <p class="me-timeline__desc">母のiPadを借りて絵を描いたことをきっかけに、独学でイラスト制作を開始。学びながら成長していく事が楽しく、制作を続けた結果、SNSの総フォロワーが１万人を超える</p>
+                        </div>
+                    </li>
+
+                    <li class="me-timeline__item">
+                        <p class="me-timeline__year">2026-NOW</p>
+                        <div class="me-timeline__body">
+                            <h3 class="me-timeline__title" lang="en">Web Engineering</h3>
+                            <p class="me-timeline__desc">現在は職業訓練校でWebプログラミングを学びながら、Webエンジニアを目指している</p>
+                        </div>
+                    </li>
+                </ol>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+        LIKES / INTERESTS（写真がゆっくり横に流れる）
+        ========================================== -->
+        <section class="me-likes">
+            <h2 class="me-likes__heading js-fadein">
+                <span class="en">LIKES / INTERESTS</span>
+            </h2>
+
+            <div class="me-likes__marquee js-fadein">
+                <div class="me-likes__track">
+
+                    <!-- 1セット目：alt には写真の内容を書いてください -->
+                    <ul class="me-likes__group">
+                        <li class="me-likes__item"><img src="img/about/like-01.jpg" alt="紅葉"></li>
+                        <li class="me-likes__item"><img src="img/about/like-02.jpg" alt="白い犬"></li>
+                        <li class="me-likes__item"><img src="img/about/like-03.jpg" alt="白い紫陽花"></li>
+                        <li class="me-likes__item"><img src="img/about/like-04.jpg" alt=""></li>
+                        <li class="me-likes__item"><img src="img/about/like-05.jpg" alt=""></li>
+                        <li class="me-likes__item"><img src="img/about/like-06.jpg" alt=""></li>
+                    </ul>
+
+                    <!-- 2セット目：途切れずにループさせるための「複製」。
+                         1セット目と同じ画像を同じ順番で並べます。
+                         読み上げソフトが2回読まないよう aria-hidden を付け、alt は空にしています -->
+                    <ul class="me-likes__group" aria-hidden="true">
+                        <li class="me-likes__item"><img src="img/about/like-01.jpg" alt=""></li>
+                        <li class="me-likes__item"><img src="img/about/like-02.jpg" alt=""></li>
+                        <li class="me-likes__item"><img src="img/about/like-03.jpg" alt=""></li>
+                        <li class="me-likes__item"><img src="img/about/like-04.jpg" alt=""></li>
+                        <li class="me-likes__item"><img src="img/about/like-05.jpg" alt=""></li>
+                        <li class="me-likes__item"><img src="img/about/like-06.jpg" alt=""></li>
+                    </ul>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TOPに戻る -->
+        <a href="#" class="page-top js-fadein" aria-label="ページトップへ戻る">
+            <span class="page-top__line"></span>
+            <span class="page-top__text">PAGE TOP</span>
+        </a>
+    </main>
+
+    <footer class="site-footer">
+        <ul class="site-footer__links">
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="index.html#projects-page">制作物</a></li>
+            <li><a href="about.html">わたしについて</a></li>
+        </ul>
+        <small class="site-footer__copy">© 2026 Ayane Harada</small>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
