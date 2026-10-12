@@ -180,7 +180,8 @@ if (galleryTrack) {
 // ==========================================
 // わたしについてページ：LIKES の写真をゆっくり流す
 // ・ループ用の2セット目を自動で複製（1セット目と必ず同じになる）
-// ・帯ごとではなく写真1枚ずつを動かす（iPhoneで白く抜けるのを防ぐ）
+// ・写真の位置をずらすのではなく、枠の中身を横にスクロールさせて流す
+//   （iPhoneで、画面外にあった写真が描かれず白く抜けるのを防ぐため）
 // ・速さは「1秒あたり何px動くか」で決める
 // ==========================================
 
@@ -205,54 +206,61 @@ if (likesTrack) {
     // 動きを減らす設定の人には流さない（CSS側で横スクロールに切り替わる）
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    let likesAnimations = [];   // 動かしている写真のアニメーションをまとめて持っておく
+    let likesPos = 0;        // 今どれだけスクロールしたか
+    let loopWidth = 0;       // 1セット分の幅（ここまで来たら最初に戻す）
+    let lastTime = null;     // 前のコマの時刻
+    let isPaused = false;
     let lastWidth = window.innerWidth;
 
-    function startLikes() {
-        // 前のアニメーションを止めてから作り直す
-        likesAnimations.forEach((anim) => anim.cancel());
-        likesAnimations = [];
-
-        if (reduceMotion.matches) return;
-
-        // 1セット分の幅だけ左へ動かすと、2セット目が1セット目の位置に来て、つなぎ目が見えない
-        const groupWidth = likesGroup.getBoundingClientRect().width;
-        if (groupWidth === 0) return;
-
-        const duration = (groupWidth / LIKES_SPEED) * 1000; // ミリ秒
-        const startTime = document.timeline.currentTime;      // 全部の写真の開始時刻をそろえる
-
-        likesTrack.querySelectorAll(".me-likes__item").forEach((item) => {
-            const anim = item.animate(
-                [
-                    { transform: "translate3d(0, 0, 0)" },
-                    { transform: `translate3d(${-groupWidth}px, 0, 0)` }
-                ],
-                { duration: duration, iterations: Infinity, easing: "linear" }
-            );
-            anim.startTime = startTime;
-            likesAnimations.push(anim);
-        });
+    // 2セット目の始まり ー 1セット目の始まり ＝ 1セット分の幅
+    function measureLikes() {
+        loopWidth = likesClone.offsetLeft - likesGroup.offsetLeft;
     }
 
-    // マウスを乗せている間は止める（マウスが使えるPCだけ）
-    if (window.matchMedia("(hover: hover)").matches) {
-        likesMarquee.addEventListener("mouseenter", () => {
-            likesAnimations.forEach((anim) => anim.pause());
-        });
-        likesMarquee.addEventListener("mouseleave", () => {
-            likesAnimations.forEach((anim) => anim.play());
-        });
+    // 1コマごとに少しずつスクロールさせる
+    function stepLikes(time) {
+        if (lastTime === null) lastTime = time;
+
+        // 前のコマからの経過秒数（タブを離れて戻ったときに一気に進まないよう、最大0.1秒）
+        const elapsed = Math.min((time - lastTime) / 1000, 0.1);
+        lastTime = time;
+
+        if (!isPaused && loopWidth > 0) {
+            likesPos += LIKES_SPEED * elapsed;
+
+            // 1セット分進んだら、その分だけ戻す（2セット目と1セット目は同じなので、つなぎ目が見えない）
+            if (likesPos >= loopWidth) {
+                likesPos -= loopWidth;
+            }
+            likesMarquee.scrollLeft = likesPos;
+        }
+
+        requestAnimationFrame(stepLikes);
     }
 
-    startLikes();
-    window.addEventListener("load", startLikes); // 画像の読み込みが終わったあとにも計算し直す
+    if (!reduceMotion.matches) {
+        measureLikes();
+        requestAnimationFrame(stepLikes);
 
-    // 画面の「横幅」が変わったときだけ作り直す
-    // （スマホはスクロールでアドレスバーが出入りして高さが変わるので、高さの変化では作り直さない）
-    window.addEventListener("resize", () => {
-        if (window.innerWidth === lastWidth) return;
-        lastWidth = window.innerWidth;
-        startLikes();
-    });
+        // 画像の読み込みが終わったあとにも測り直す
+        window.addEventListener("load", measureLikes);
+
+        // 画面の「横幅」が変わったときだけ測り直す
+        // （スマホはスクロールでアドレスバーが出入りして高さが変わるので、高さの変化では測り直さない）
+        window.addEventListener("resize", () => {
+            if (window.innerWidth === lastWidth) return;
+            lastWidth = window.innerWidth;
+            measureLikes();
+        });
+
+        // マウスを乗せている間は止める（マウスが使えるPCだけ）
+        if (window.matchMedia("(hover: hover)").matches) {
+            likesMarquee.addEventListener("mouseenter", () => {
+                isPaused = true;
+            });
+            likesMarquee.addEventListener("mouseleave", () => {
+                isPaused = false;
+            });
+        }
+    }
 }
