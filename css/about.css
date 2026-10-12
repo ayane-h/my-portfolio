@@ -267,10 +267,11 @@ LIKES / INTERESTS（写真がゆっくり横に流れる）
 }
 
 .me-likes__item {
-    flex: 0 0 var(--likes-width);
-    aspect-ratio: 330 / 214;   /* Figmaの縦横比 */
+    flex: 0 0 auto;
+    width: var(--likes-width);
+    aspect-ratio: 330 / 214; 
     overflow: hidden;
-    background-color: #DAD9D7; /* 画像を入れるまでの仮の色 */
+    background-color: #DAD9D7;
 }
 
 /* PAGE TOP の上の余白 */
