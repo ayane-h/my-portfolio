@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEBAE APP | Ayane Harada Portfolio</title>
+    <meta name="description" content="気になる企業を植物に見立て、企業への気持ちや活動を自分のペースで記録できる転職活動アプリ「めばえ」の紹介ページです。">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/project.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header id="header" class="is-scrolled">
+        <p id="home">
+            <a href="index.html">
+                <img src="img/ポートフォリオロゴ(333).svg" alt="サイトロゴ" width="200" height="50">
+            </a>
+        </p>
+
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html#projects-page">制作物</a></li>
+                <li><a href="about.html">わたしについて</a></li>
+            </ul>
+        </nav>
+
+        <!-- ハンバーガーメニュー -->
+        <button class="burger-btn" aria-label="メニューを開く" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- メニュー展開パネル -->
+        <div class="menu-panel">
+            <nav class="menu-panel-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <span class="menu-en">Home</span>
+                            <span class="menu-ja">ホーム</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#projects-page">
+                            <span class="menu-en">Projects</span>
+                            <span class="menu-ja">制作物</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <span class="menu-en">About me</span>
+                            <span class="menu-ja">わたしについて</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="detail-page">
+
+        <h1 class="detail-title">MEBAE APP</h1>
+
+        <!-- スクリーンショット（横スクロール）
+             画像は img/mebae/ フォルダに 01.webp 〜 03.webp の名前で入れてください。
+             PCでは3枚がちょうど収まるので、矢印は自動で隠れます -->
+        <div class="detail-gallery js-fadein">
+            <ul class="detail-gallery__track">
+                <li class="detail-gallery__item">
+                    <img src="img/mebae/01.webp" alt="育てる。気になる企業を、庭に植える。">
+                </li>
+                <li class="detail-gallery__item">
+                    <img src="img/mebae/02.webp" alt="書きとめる。いいなも、迷いも、少しずつ。">
+                </li>
+                <li class="detail-gallery__item">
+                    <img src="img/mebae/03.webp" alt="照らしあわせる。希望条件と求人票を、AIで見比べる。">
+                </li>
+            </ul>
+
+            <!-- 矢印ボタン（script.js が使うので、3枚でも消さずに残しておく） -->
+            <button type="button" class="detail-gallery__arrow detail-gallery__arrow--prev" aria-label="前の画像へ"
+                hidden></button>
+            <button type="button" class="detail-gallery__arrow detail-gallery__arrow--next" aria-label="次の画像へ"></button>
+        </div>
+
+        <!-- アプリへのリンク＋ひとこと説明 -->
+        <div class="detail-intro js-fadein">
+            <a class="detail-button" href="https://mebae-app.vercel.app" target="_blank" rel="noopener noreferrer">
+                アプリを見る<span class="visually-hidden">（別タブで開きます）</span>
+            </a>
+            <!-- ボタンのすぐ下に出す補足 -->
+            <p class="detail-note">登録なしで試せるデモがあります。</p>
+
+            <p class="detail-lead">気になる気持ちを、育てていく。<br>企業への気持ちや活動を記録する、転職活動アプリです。</p>
+        </div>
+
+        <!-- 概要表
+             PCでは2列（左｜右）で、上から順に左右へ並びます。
+             スマホでは1列になり、project.css の order で
+             制作時期 → 制作 → 担当 → Tools → Frontend → Backend → API → 認証 → 公開 の順に並び替わります -->
+        <dl class="detail-spec js-fadein">
+            <div class="detail-spec__row">
+                <dt>制作時期</dt>
+                <dd>2026.09 — NOW</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>Tools</dt>
+                <dd>VSCode / Figma</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>制作</dt>
+                <dd>個人制作</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>API</dt>
+                <dd>Gemini API</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>担当</dt>
+                <dd>企画 / 要件整理 / UI設計<br>デザイン / イラスト<br>フロントエンド / バックエンド</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>Backend</dt>
+                <dd>Cloudflare Workers / D1</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>Frontend</dt>
+                <dd>React</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>認証</dt>
+                <dd>Clerk</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>公開</dt>
+                <dd>Vercel</dd>
+            </div>
+        </dl>
+
+        <!-- 本文 -->
+        <div class="detail-body">
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">制作背景</h2>
+                <div class="detail-section__content">
+                    <p>採用支援の仕事を通じて、応募した企業を忘れてしまう求職者がいることを知りました。また自分自身の転職活動でも、応募先や求人情報をまとめて管理したいと感じていました。</p>
+                    <p>一方、調べた範囲では表やダッシュボード型の管理アプリが多く、機能性だけでなく、転職活動について考える時間も少し楽しくなるものを作りたいと思いました。</p>
+                    <p>そこで、企業を植物に見立て、自分のペースで記録を育てていけるWebアプリ「めばえ」を制作しました。</p>
+                </div>
+            </section>
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">特徴</h2>
+                <div class="detail-section__content">
+                    <ul class="detail-points">
+                        <li>
+                            <h3>01｜企業を植物に見立てる</h3>
+                            <p>気になる企業を庭に植え、記録を重ねるごとに 種 → 芽 → つぼみ → 花 と育っていきます。</p>
+                        </li>
+                        <li>
+                            <h3>02｜企業ごとに記録する</h3>
+                            <p>求人票、「いいな」と思ったこと、気になること、本音、メモに加えて、求人ページのリンクや選考フロー、選考状況も企業ごとにまとめて保存できます。情報を見失いにくく、気持ちの変化も振り返れます。</p>
+                        </li>
+                        <li>
+                            <h3>03｜AIで希望条件と照合する</h3>
+                            <p>求人票と自分の希望条件をAIが照らし合わせ、条件ごとに○△×と根拠を表示します。結果だけで判断するのではなく、自分で考えるための材料として活用できます。</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">工夫したポイント</h2>
+                <div class="detail-section__content">
+                    <ul class="detail-points">
+                        <li>
+                            <h3>01｜記録を促すのではなく、自然に残したくなる設計</h3>
+                            <p>企業を植物に見立て、記録を重ねる過程を目に見える形にしました。成長は選考結果に左右されないため、不採用になった企業も枯れずに庭に残ります。
+                            また、次の記録を案内するカードを一度作りましたが、実際に使ってみると記録を促されているように感じたため、外しました。庭や植物のイラストは自分で描いています。</p>
+                        </li>
+                        <li>
+                            <h3>02｜AIに判断を委ねず、考えるための材料にする</h3>
+                            <p>AIによる照合では、一致率のような点数で企業を評価するのではなく、希望条件ごとに一致する点や気になる点を整理する形にしました。照合結果は、自分の判断でいつでも書き換えられます。</p>
+                        </li>
+                        <li>
+                            <h3>03｜画面だけでなく、データの流れまで設計する</h3>
+                            <p>Reactの画面からCloudflare Workersを通して、D1にデータを保存・取得する構成にしました。
+                            ログインにはClerkを使い、Workers側でログイン中の本人かを確認したうえで、その人のデータだけを扱えるようにしています。</p>
+                        </li>
+                        <li>
+                            <h3>04｜実際に使って気づいた点を直す</h3>
+                            <p>AIを使って実装を進めるだけでなく、実際に動かして使い心地を確認しました。たとえば、AI照合の待ち時間が長く感じたため、待っている間に照合結果の表の枠を先に表示し、進み具合が分かる文章を出す形に改善しました。</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">今後の改善予定</h2>
+                <div class="detail-section__content">
+                    <ul class="detail-list">
+                        <li>企業との連絡手段を記録する欄の追加</li>
+                        <li>庭の花や鉢の種類の追加</li>
+                        <li>画面ごとにファイルを分けるなど、コードの整理</li>
+                        <li>AIによる求人票の読み取りと照合結果の品質向上</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- 前後の作品・一覧へのリンク（01は最初の作品なので「前へ」はなし） -->
+        <div class="detail-pager js-fadein">
+            <a class="detail-pager__all" href="index.html#projects-page">制作物一覧</a>
+            <a class="detail-pager__next" href="diary.html">02<span class="detail-pager__name"> DIARY APP</span> →</a>
+        </div>
+
+        <!-- TOPに戻る -->
+        <a href="#" class="page-top js-fadein" aria-label="ページトップへ戻る">
+            <span class="page-top__line"></span>
+            <span class="page-top__text">PAGE TOP</span>
+        </a>
+    </main>
+
+    <footer class="site-footer">
+        <ul class="site-footer__links">
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="index.html#projects-page">制作物</a></li>
+            <li><a href="about.html">わたしについて</a></li>
+        </ul>
+        <small class="site-footer__copy">© 2026 Ayane Harada</small>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
