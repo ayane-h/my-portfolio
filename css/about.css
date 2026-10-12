@@ -271,18 +271,6 @@ LIKES / INTERESTS（写真がゆっくり横に流れる）
     background-color: #DAD9D7; /* 画像を入れるまでの仮の色 */
 }
 
-/* 帯の半分（＝1セット分）だけ動かすと、2セット目が1セット目と
-   同じ位置に来るので、最初に戻っても途切れて見えない */
-@keyframes me-marquee {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-}
-
 /* PAGE TOP の上の余白 */
 .me-page .page-top {
     margin-top: 170px;
@@ -303,6 +291,22 @@ LIKES / INTERESTS（写真がゆっくり横に流れる）
     }
 }
 
+/* iPhoneで流れる写真が白く抜けないよう、動く帯を別の層で描画させる */
+.me-likes__track {
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+@keyframes me-marquee {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
 /* ==========================================
 タブレット（〜1024px）
 ========================================== */

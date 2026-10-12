@@ -196,30 +196,21 @@
             </h2>
 
             <div class="me-likes__marquee js-fadein">
-                <div class="me-likes__track">
+                <div class="me-likes__marquee js-fadein">
+                    <div class="me-likes__track">
 
-                    <!-- 1セット目：alt には写真の内容を書いてください -->
-                    <ul class="me-likes__group">
-                        <li class="me-likes__item"><img src="img/about/like-01.jpg" alt="紅葉"></li>
-                        <li class="me-likes__item"><img src="img/about/like-02.jpg" alt="白い犬"></li>
-                        <li class="me-likes__item"><img src="img/about/like-03.jpg" alt="白い紫陽花"></li>
-                        <li class="me-likes__item"><img src="img/about/like-04.jpg" alt=""></li>
-                        <li class="me-likes__item"><img src="img/about/like-05.jpg" alt=""></li>
-                        <li class="me-likes__item"><img src="img/about/like-06.jpg" alt=""></li>
-                    </ul>
+                        <!-- 写真はここにだけ書く（ループ用の複製は script.js が自動で作る）
+                        alt には写真の内容を書いてください -->
+                        <ul class="me-likes__group">
+                            <li class="me-likes__item"><img src="img/about/like-01.jpg" alt="紅葉"></li>
+                            <li class="me-likes__item"><img src="img/about/like-03.jpg" alt="白い紫陽花"></li>
+                            <li class="me-likes__item"><img src="img/about/like-04.jpg" alt=""></li>
+                            <li class="me-likes__item"><img src="img/about/like-05.jpg" alt=""></li>
+                            <li class="me-likes__item"><img src="img/about/like-06.jpg" alt=""></li>
+                            <li class="me-likes__item"><img src="img/about/like-07.jpg" alt=""></li>
+                        </ul>
 
-                    <!-- 2セット目：途切れずにループさせるための「複製」。
-                         1セット目と同じ画像を同じ順番で並べます。
-                         読み上げソフトが2回読まないよう aria-hidden を付け、alt は空にしています -->
-                    <ul class="me-likes__group" aria-hidden="true">
-                        <li class="me-likes__item"><img src="img/about/like-01.jpg" alt=""></li>
-                        <li class="me-likes__item"><img src="img/about/like-02.jpg" alt=""></li>
-                        <li class="me-likes__item"><img src="img/about/like-03.jpg" alt=""></li>
-                        <li class="me-likes__item"><img src="img/about/like-04.jpg" alt=""></li>
-                        <li class="me-likes__item"><img src="img/about/like-05.jpg" alt=""></li>
-                        <li class="me-likes__item"><img src="img/about/like-06.jpg" alt=""></li>
-                    </ul>
-
+                    </div>
                 </div>
             </div>
         </section>

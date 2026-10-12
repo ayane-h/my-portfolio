@@ -54,16 +54,16 @@ const burgerY = 55;
 
 // 【整理】同じ処理が2つの scroll イベントに分かれていたので1つにまとめた
 if (heroSection && divider) {
-window.addEventListener("scroll", () => {
-    // ファーストビューを過ぎたかどうか
-    const isScrolled = window.scrollY >= heroSection.offsetHeight;
-    header.classList.toggle("is-scrolled", isScrolled);
+    window.addEventListener("scroll", () => {
+        // ファーストビューを過ぎたかどうか
+        const isScrolled = window.scrollY >= heroSection.offsetHeight;
+        header.classList.toggle("is-scrolled", isScrolled);
 
-    // 区切り画像がハンバーガーボタンの位置にかぶっているかどうか
-    const dividerRect = divider.getBoundingClientRect();
-    const isOverDivider = dividerRect.top <= burgerY && dividerRect.bottom >= burgerY;
-    header.classList.toggle("is-over-divider", isOverDivider);
-});
+        // 区切り画像がハンバーガーボタンの位置にかぶっているかどうか
+        const dividerRect = divider.getBoundingClientRect();
+        const isOverDivider = dividerRect.top <= burgerY && dividerRect.bottom >= burgerY;
+        header.classList.toggle("is-over-divider", isOverDivider);
+    });
 }
 
 // ==========================================
@@ -99,7 +99,7 @@ fadeTargets.forEach((target) => {
 });
 
 // iOS Safari でタップ時の :active を有効にする
-document.addEventListener("touchstart", () => {}, { passive: true });
+document.addEventListener("touchstart", () => { }, { passive: true });
 
 // ==========================================
 // 紹介ページ：スクリーンショットの矢印ボタン
@@ -138,7 +138,7 @@ if (galleryTrack) {
 
     updateArrows();
 
-        // ------------------------------------------
+    // ------------------------------------------
     // 掴んで横スクロール
     // ------------------------------------------
     let isDragging = false;
@@ -175,4 +175,38 @@ if (galleryTrack) {
         // 寄せ終わってからスナップを戻す（すぐ戻すとカクッと飛ぶため）
         setTimeout(() => galleryTrack.classList.remove("is-dragging"), 500);
     });
+}
+
+// ==========================================
+// わたしについてページ：LIKES の写真をゆっくり流す
+// ・ループ用の2セット目を自動で複製（1セット目と必ず同じになる）
+// ・速さを「1秒あたり何px動くか」で決める（画面幅や枚数が変わっても同じ速さ）
+// ==========================================
+
+const likesTrack = document.querySelector(".me-likes__track");
+
+// LIKES があるページ（about.html）でだけ動かす
+if (likesTrack) {
+    const likesGroup = likesTrack.querySelector(".me-likes__group");
+
+    // 2セット目を作る。読み上げソフトが2回読まないよう aria-hidden を付け、alt を空にする
+    const likesClone = likesGroup.cloneNode(true);
+    likesClone.setAttribute("aria-hidden", "true");
+    likesClone.querySelectorAll("img").forEach((img) => {
+        img.alt = "";
+    });
+    likesTrack.appendChild(likesClone);
+
+    // 1秒に動く距離（px）。小さくするほどゆっくりになる
+    const LIKES_SPEED = 25;
+
+    // 1セット分の幅 ÷ 速さ ＝ 1周にかかる秒数
+    function updateLikesDuration() {
+        const groupWidth = likesGroup.getBoundingClientRect().width;
+        likesTrack.style.setProperty("--likes-duration", `${groupWidth / LIKES_SPEED}s`);
+    }
+
+    updateLikesDuration();
+    window.addEventListener("load", updateLikesDuration);   // 画像の読み込みが終わったあとにも計算し直す
+    window.addEventListener("resize", updateLikesDuration); // 画面幅が変わったときも計算し直す
 }
