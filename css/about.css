@@ -252,9 +252,11 @@ LIKES / INTERESTS（写真がゆっくり横に流れる）
     /* animation-direction: reverse; */
 }
 
-/* マウスを乗せている間は止める */
-.me-likes__marquee:hover .me-likes__track {
-    animation-play-state: paused;
+/* マウスを乗せている間は止める（マウスが使えるPCだけ） */
+@media (hover: hover) {
+    .me-likes__marquee:hover .me-likes__track {
+        animation-play-state: paused;
+    }
 }
 
 .me-likes__group {
@@ -293,20 +295,13 @@ LIKES / INTERESTS（写真がゆっくり横に流れる）
 
 /* iPhoneで流れる写真が白く抜けないよう、動く帯を別の層で描画させる */
 .me-likes__track {
+    animation: none;
+}
+
+.me-likes__item {
     will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 }
 
-@keyframes me-marquee {
-    from {
-        transform: translate3d(0, 0, 0);
-    }
-
-    to {
-        transform: translate3d(-50%, 0, 0);
-    }
-}
 /* ==========================================
 タブレット（〜1024px）
 ========================================== */

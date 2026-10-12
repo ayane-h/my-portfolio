@@ -180,13 +180,15 @@ if (galleryTrack) {
 // ==========================================
 // わたしについてページ：LIKES の写真をゆっくり流す
 // ・ループ用の2セット目を自動で複製（1セット目と必ず同じになる）
-// ・速さを「1秒あたり何px動くか」で決める（画面幅や枚数が変わっても同じ速さ）
+// ・帯ごとではなく写真1枚ずつを動かす（iPhoneで白く抜けるのを防ぐ）
+// ・速さは「1秒あたり何px動くか」で決める
 // ==========================================
 
 const likesTrack = document.querySelector(".me-likes__track");
 
 // LIKES があるページ（about.html）でだけ動かす
 if (likesTrack) {
+    const likesMarquee = likesTrack.closest(".me-likes__marquee");
     const likesGroup = likesTrack.querySelector(".me-likes__group");
 
     // 2セット目を作る。読み上げソフトが2回読まないよう aria-hidden を付け、alt を空にする
@@ -200,13 +202,57 @@ if (likesTrack) {
     // 1秒に動く距離（px）。小さくするほどゆっくりになる
     const LIKES_SPEED = 25;
 
-    // 1セット分の幅 ÷ 速さ ＝ 1周にかかる秒数
-    function updateLikesDuration() {
+    // 動きを減らす設定の人には流さない（CSS側で横スクロールに切り替わる）
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let likesAnimations = [];   // 動かしている写真のアニメーションをまとめて持っておく
+    let lastWidth = window.innerWidth;
+
+    function startLikes() {
+        // 前のアニメーションを止めてから作り直す
+        likesAnimations.forEach((anim) => anim.cancel());
+        likesAnimations = [];
+
+        if (reduceMotion.matches) return;
+
+        // 1セット分の幅だけ左へ動かすと、2セット目が1セット目の位置に来て、つなぎ目が見えない
         const groupWidth = likesGroup.getBoundingClientRect().width;
-        likesTrack.style.setProperty("--likes-duration", `${groupWidth / LIKES_SPEED}s`);
+        if (groupWidth === 0) return;
+
+        const duration = (groupWidth / LIKES_SPEED) * 1000; // ミリ秒
+        const startTime = document.timeline.currentTime;      // 全部の写真の開始時刻をそろえる
+
+        likesTrack.querySelectorAll(".me-likes__item").forEach((item) => {
+            const anim = item.animate(
+                [
+                    { transform: "translate3d(0, 0, 0)" },
+                    { transform: `translate3d(${-groupWidth}px, 0, 0)` }
+                ],
+                { duration: duration, iterations: Infinity, easing: "linear" }
+            );
+            anim.startTime = startTime;
+            likesAnimations.push(anim);
+        });
     }
 
-    updateLikesDuration();
-    window.addEventListener("load", updateLikesDuration);   // 画像の読み込みが終わったあとにも計算し直す
-    window.addEventListener("resize", updateLikesDuration); // 画面幅が変わったときも計算し直す
+    // マウスを乗せている間は止める（マウスが使えるPCだけ）
+    if (window.matchMedia("(hover: hover)").matches) {
+        likesMarquee.addEventListener("mouseenter", () => {
+            likesAnimations.forEach((anim) => anim.pause());
+        });
+        likesMarquee.addEventListener("mouseleave", () => {
+            likesAnimations.forEach((anim) => anim.play());
+        });
+    }
+
+    startLikes();
+    window.addEventListener("load", startLikes); // 画像の読み込みが終わったあとにも計算し直す
+
+    // 画面の「横幅」が変わったときだけ作り直す
+    // （スマホはスクロールでアドレスバーが出入りして高さが変わるので、高さの変化では作り直さない）
+    window.addEventListener("resize", () => {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        startLikes();
+    });
 }
