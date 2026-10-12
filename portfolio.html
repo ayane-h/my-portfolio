@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO WEBSITE | Ayane Harada Portfolio</title>
+    <meta name="description" content="初めて見る人が短い時間でも要点をつかめるよう、情報を絞って構成したポートフォリオサイトの紹介ページです。">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/project.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header id="header" class="is-scrolled">
+        <p id="home">
+            <a href="index.html">
+                <img src="img/ポートフォリオロゴ(333).svg" alt="サイトロゴ" width="200" height="50">
+            </a>
+        </p>
+
+        <nav>
+            <ul class="nav-list">
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="index.html#projects-page">制作物</a></li>
+                <li><a href="about.html">わたしについて</a></li>
+            </ul>
+        </nav>
+
+        <!-- ハンバーガーメニュー -->
+        <button class="burger-btn" aria-label="メニューを開く" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- メニュー展開パネル -->
+        <div class="menu-panel">
+            <nav class="menu-panel-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">
+                            <span class="menu-en">Home</span>
+                            <span class="menu-ja">ホーム</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#projects-page">
+                            <span class="menu-en">Projects</span>
+                            <span class="menu-ja">制作物</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="about.html">
+                            <span class="menu-en">About me</span>
+                            <span class="menu-ja">わたしについて</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="detail-page">
+
+        <h1 class="detail-title">PORTFOLIO WEBSITE</h1>
+
+        <!-- このページは画像と「サイトを見る」ボタンなし（今見ているサイトそのものなので） -->
+
+        <!-- ひとこと説明 -->
+        <div class="detail-intro detail-intro--text-only js-fadein">
+            <p class="detail-lead">初めて見る人が短い時間でも要点をつかめるよう、<br>情報を絞って構成したポートフォリオサイトです。</p>
+        </div>
+
+        <!-- 概要表 -->
+        <dl class="detail-spec js-fadein">
+            <div class="detail-spec__row">
+                <dt>制作時期</dt>
+                <dd>2026.08 — NOW</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>Tools</dt>
+                <dd>VSCode / Figma</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>制作</dt>
+                <dd>個人制作</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>公開</dt>
+                <!-- 実際の公開先に合わせて書き換えてください -->
+                <dd>GitHub Pages</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>担当</dt>
+                <dd>企画 / 情報設計 / UI設計<br>デザイン / フロントエンド</dd>
+            </div>
+            <div class="detail-spec__row">
+                <dt>Frontend</dt>
+                <dd>HTML / CSS / JavaScript</dd>
+            </div>
+        </dl>
+
+        <!-- 本文 -->
+        <div class="detail-body detail-body--tight">
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">制作背景</h2>
+                <div class="detail-section__content">
+                    <p>制作物と自分自身のことを、ひとつの場所で伝えるために制作しました。</p>
+                    <p>初めて訪れた方が短い時間でも要点をつかめるよう、載せる情報を絞り、力を入れた制作物から順に並べています。構成は自分で考え、何を載せて何を載せないかに一番悩みました。</p>
+                </div>
+            </section>
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">工夫したポイント</h2>
+                <div class="detail-section__content">
+                    <ul class="detail-points">
+                        <li>
+                            <h3>01｜見てほしい順に並べる</h3>
+                            <p>制作物を自己紹介より先に置き、自己紹介はトップページでは要約だけにして、詳しい内容は別のページに分けました。制作物は01と02を大きく、03以降を小さく見せることで、力を入れた順が伝わるようにしています。</p>
+                        </li>
+                        <li>
+                            <h3>02｜デザインのルールを先に決める</h3>
+                            <p>Figmaで背景色・文字色・見出しと本文の文字サイズを先に決めてから制作し、ページが増えても見た目に統一感が出るようにしました。</p>
+                        </li>
+                        <li>
+                            <h3>03｜紹介ページの型をそろえる</h3>
+                            <p>制作物の紹介ページは「概要表 → 制作背景 → 特徴 → 工夫したポイント」の順を基本にそろえ、どのページも同じ流れで読み進められるようにしました。</p>
+                        </li>
+                        <li>
+                            <h3>04｜好きなものでサイトの雰囲気をつくる</h3>
+                            <p>一日の中で一番好きな夕暮れ時の写真で、トップページの雰囲気をそろえました。「わたしについて」のページには自分の好きなものの写真を並べ、文章だけでは伝わりにくい部分も感じてもらえるようにしています。</p>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="detail-section js-fadein">
+                <h2 class="detail-section__label">今後の改善予定</h2>
+                <div class="detail-section__content">
+                    <!-- 仮の内容です。実際の予定に合わせて書き換えてください -->
+                    <ul class="detail-list">
+                        <li>制作物の追加</li>
+                        <li>画像の軽量化など、表示速度の改善</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- 前後の作品・一覧へのリンク（05ができたら「次へ」を追加） -->
+        <div class="detail-pager js-fadein">
+            <a class="detail-pager__prev" href="tax-office.html">← 03<span class="detail-pager__name"> TAX OFFICE
+                    WEBSITE</span></a>
+            <a class="detail-pager__all" href="index.html#projects-page">制作物一覧</a>
+        </div>
+
+        <!-- TOPに戻る -->
+        <a href="#" class="page-top js-fadein" aria-label="ページトップへ戻る">
+            <span class="page-top__line"></span>
+            <span class="page-top__text">PAGE TOP</span>
+        </a>
+    </main>
+
+    <footer class="site-footer">
+        <ul class="site-footer__links">
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="index.html#projects-page">制作物</a></li>
+            <li><a href="about.html">わたしについて</a></li>
+        </ul>
+        <small class="site-footer__copy">© 2026 Ayane Harada</small>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
